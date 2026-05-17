@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Farmora - The Future of Freshness</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&amp;family=Sora:wght@100..800&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface": "#121411",
+                "surface-container": "#1e201d",
+                "on-surface": "#e3e3de",
+                "secondary-fixed-dim": "#abd600",
+                "primary-fixed-dim": "#a9d293",
+                "on-secondary": "#283500",
+                "surface-bright": "#383a36",
+                "on-primary": "#173809",
+                "surface-container-high": "#292b27",
+                "on-tertiary-fixed": "#360f00",
+                "on-tertiary-container": "#fb9f75",
+                "on-secondary-container": "#556d00",
+                "on-primary-container": "#98c083",
+                "tertiary-container": "#753413",
+                "error": "#ffb4ab",
+                "secondary-container": "#c3f400",
+                "tertiary-fixed-dim": "#ffb596",
+                "outline-variant": "#43493e",
+                "on-background": "#e3e3de",
+                "on-tertiary-fixed-variant": "#753413",
+                "primary-fixed": "#c5efad",
+                "surface-dim": "#121411",
+                "on-surface-variant": "#c3c8bb",
+                "inverse-surface": "#e3e3de",
+                "tertiary-fixed": "#ffdbcd",
+                "surface-container-lowest": "#0d0f0c",
+                "on-error-container": "#ffdad6",
+                "inverse-primary": "#446733",
+                "background": "#121411",
+                "surface-variant": "#333532",
+                "on-secondary-fixed": "#161e00",
+                "on-tertiary": "#581e00",
+                "on-primary-fixed": "#062100",
+                "on-secondary-fixed-variant": "#3c4d00",
+                "on-error": "#690005",
+                "surface-container-low": "#1a1c19",
+                "surface-tint": "#a9d293",
+                "tertiary": "#ffb596",
+                "inverse-on-surface": "#2f312e",
+                "surface-container-highest": "#333532",
+                "outline": "#8d9386",
+                "error-container": "#93000a",
+                "secondary-fixed": "#c3f400",
+                "secondary": "#ffffff",
+                "primary": "#a9d293",
+                "primary-container": "#2d4f1e",
+                "on-primary-fixed-variant": "#2d4f1e"
+        },
+        "borderRadius": {
+                "DEFAULT": "1rem",
+                "lg": "2rem",
+                "xl": "3rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "unit": "8px",
+                "section-gap": "80px",
+                "container-margin": "24px",
+                "card-padding": "24px",
+                "gutter": "16px"
+        },
+        "fontFamily": {
+                "display-lg-mobile": [
+                        "Literata"
+                ],
+                "price-display": [
+                        "Sora"
+                ],
+                "body-md": [
+                        "Sora"
+                ],
+                "body-lg": [
+                        "Sora"
+                ],
+                "label-caps": [
+                        "Sora"
+                ],
+                "headline-md": [
+                        "Literata"
+                ],
+                "display-lg": [
+                        "Literata"
+                ]
+        },
+        "fontSize": {
+                "display-lg-mobile": [
+                        "36px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "600"
+                        }
+                ],
+                "price-display": [
+                        "24px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-caps": [
+                        "12px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "0.1em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-md": [
+                        "32px",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "500"
+                        }
+                ],
+                "display-lg": [
+                        "56px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-surface');
+            /* Noise texture overlay removed to follow guidelines */
+        }
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        .glow-hover:hover {
+            box-shadow: 0 0 24px rgba(195, 244, 0, 0.4);
+            transform: translateY(-2px);
+        }
+        .subtle-glow {
+            box-shadow: inset 0 0 40px rgba(195, 244, 0, 0.05);
+        }
+      </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col relative overflow-x-hidden">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-2xl border-b border-white/5 transition-all duration-300">
+<div class="flex justify-between items-center px-container-margin py-4 w-full max-w-[1440px] mx-auto">
+<!-- Brand -->
+<div class="font-headline-md text-headline-md font-bold text-secondary-fixed tracking-tight">
+                Farmora
+            </div>
+<!-- Navigation Links (Desktop) -->
+<div class="hidden md:flex items-center gap-10">
+<a class="text-secondary-fixed border-b-2 border-secondary-fixed pb-1 font-label-caps text-label-caps tracking-widest transition-transform" href="#">Marketplace</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps tracking-widest hover:text-secondary-fixed transition-colors duration-300" href="#">Auctions</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps tracking-widest hover:text-secondary-fixed transition-colors duration-300" href="#">Our Story</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps tracking-widest hover:text-secondary-fixed transition-colors duration-300" href="#">Farmers</a>
+</div>
+<!-- Actions -->
+<div class="flex items-center gap-6">
+<div class="hidden md:flex gap-5">
+<span class="material-symbols-outlined text-on-surface-variant hover:text-secondary-fixed transition-colors duration-300 cursor-pointer" data-icon="shopping_cart">shopping_cart</span>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-secondary-fixed transition-colors duration-300 cursor-pointer" data-icon="account_circle">account_circle</span>
+</div>
+<button class="bg-secondary-fixed text-on-secondary-fixed font-label-caps text-label-caps px-8 py-3.5 rounded-full hover:bg-white transition-all glow-hover hidden md:block">
+                    Join Harvest
+                </button>
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="flex-grow">
+<!-- Hero Section -->
+<section class="relative min-h-[921px] flex items-center justify-center px-container-margin py-section-gap pt-32">
+<!-- Background Image -->
+<div class="absolute inset-0 z-0 overflow-hidden">
+<img alt="Hero Background" class="w-full h-full object-cover opacity-60 scale-105" data-alt="A cinematic, high-tech indoor vertical farm environment at night. Rows of vibrant green leafy vegetables are illuminated by futuristic, glowing neon lime green grow lights. The atmosphere is sleek, damp, and highly advanced, embodying eco-futurism. Minimalist glass panels and clean metallic structures reflect the soft green glow, contrasting with deep, rich black shadows in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1HC9JWwHWiN_PTYYm3x-gUGTg5vhmO5SWBDLFY2KcQjxrs4TSUXJP4cyYo1iTh50jzVbRDNyrtXp4e7-CbB94W8JX_A4QiNbGiFvFUd80onyMiBfXUJxY8xg-QNKNLSvWLQxEVDIFZDZcyg8IQDwYEoAQ5NBRrboFXu5QontbmBZ1VN8QKR-lLHyuobWH4rp8XjXUa3PGfenZDQvE0yDkk8s22MTxdHAsFa4ExGZzEjNfrO80damBGJD5gFK-MuHGzhdorOnPia4"/>
+<div class="absolute inset-0 bg-gradient-to-b from-background via-background/40 to-background"></div>
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-secondary-fixed/5 via-transparent to-transparent opacity-50"></div>
+</div>
+<div class="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center gap-8">
+<div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-surface-container/80 backdrop-blur-md border border-secondary-fixed/20 text-secondary-fixed font-label-caps text-label-caps mb-4 shadow-[0_0_15px_rgba(195,244,0,0.15)]">
+<span class="material-symbols-outlined text-sm" data-icon="eco" data-weight="fill" style="font-variation-settings: 'FILL' 1;">eco</span>
+                    Precision Nature Suite 2026
+                </div>
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-white font-semibold">
+                    The Future of <span class="text-secondary-fixed italic font-light drop-shadow-[0_0_20px_rgba(195,244,0,0.3)]">Freshness</span>
+</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+                    Direct from the soil to your table. Experience the transparent, high-tech marketplace regenerating the earth through precision agriculture.
+                </p>
+<!-- Glassmorphic Search -->
+<div class="w-full max-w-3xl glass-panel rounded-full p-2.5 mt-8 flex flex-col sm:flex-row gap-2">
+<div class="flex-1 flex items-center gap-3 px-6 py-4 bg-surface-container-low/80 rounded-full border border-white/5 hover:border-secondary-fixed/30 transition-colors">
+<span class="material-symbols-outlined text-secondary-fixed/70" data-icon="location_on">location_on</span>
+<input class="bg-transparent border-none outline-none text-white font-body-md text-body-md w-full focus:ring-0 placeholder:text-on-surface-variant/60" placeholder="Enter Location" type="text"/>
+</div>
+<div class="flex-1 flex items-center gap-3 px-6 py-4 bg-surface-container-low/80 rounded-full border border-white/5 hover:border-secondary-fixed/30 transition-colors">
+<span class="material-symbols-outlined text-secondary-fixed/70" data-icon="search">search</span>
+<input class="bg-transparent border-none outline-none text-white font-body-md text-body-md w-full focus:ring-0 placeholder:text-on-surface-variant/60" placeholder="Search Produce..." type="text"/>
+</div>
+<button class="bg-secondary-fixed text-on-secondary-fixed font-label-caps text-label-caps px-10 py-4 rounded-full hover:bg-white transition-all glow-hover flex items-center gap-2 justify-center">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+                        Explore
+                    </button>
+</div>
+<div class="flex gap-4 mt-8">
+<button class="glass-panel text-white font-label-caps text-label-caps px-8 py-3.5 rounded-full hover:bg-white/10 transition-colors border-white/20 hover:border-white/40">
+                        Join as Farmer
+                    </button>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="px-container-margin py-section-gap max-w-[1440px] mx-auto relative">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-primary-fixed/5 via-transparent to-transparent opacity-40 pointer-events-none"></div>
+<div class="mb-16 text-center max-w-2xl mx-auto">
+<h2 class="font-headline-md text-headline-md text-white mb-6">Ecosystem Advantages</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">A transparent, efficient, and organic supply chain powered by next-generation technology.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+<!-- Feature 1 -->
+<div class="glass-panel rounded-[32px] p-10 flex flex-col gap-8 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500 subtle-glow">
+<div class="absolute -right-8 -top-8 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500 transform group-hover:scale-110">
+<span class="material-symbols-outlined text-[180px] text-primary-fixed" data-icon="local_florist">local_florist</span>
+</div>
+<div class="w-14 h-14 rounded-2xl bg-primary-container/40 flex items-center justify-center border border-primary-fixed/30 backdrop-blur-md shadow-[0_0_15px_rgba(197,239,173,0.15)]">
+<span class="material-symbols-outlined text-primary-fixed" data-icon="agriculture" data-weight="fill" style="font-variation-settings: 'FILL' 1;">agriculture</span>
+</div>
+<div class="z-10 mt-auto">
+<h3 class="font-headline-md text-white text-[28px] mb-4 group-hover:text-primary-fixed transition-colors">Direct from the Soil</h3>
+<p class="font-body-md text-on-surface-variant leading-relaxed">Zero middlemen. Connect directly with local farmers for the freshest produce, ensuring fair compensation and reduced transit times.</p>
+</div>
+</div>
+<!-- Feature 2 -->
+<div class="glass-panel rounded-[32px] p-10 flex flex-col gap-8 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500 subtle-glow">
+<div class="absolute -right-8 -top-8 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500 transform group-hover:scale-110">
+<span class="material-symbols-outlined text-[180px] text-secondary-fixed" data-icon="gavel">gavel</span>
+</div>
+<div class="w-14 h-14 rounded-2xl bg-secondary-container/10 flex items-center justify-center border border-secondary-fixed/30 backdrop-blur-md shadow-[0_0_15px_rgba(195,244,0,0.15)]">
+<span class="material-symbols-outlined text-secondary-fixed" data-icon="payments" data-weight="fill" style="font-variation-settings: 'FILL' 1;">payments</span>
+</div>
+<div class="z-10 mt-auto">
+<h3 class="font-headline-md text-white text-[28px] mb-4 group-hover:text-secondary-fixed transition-colors">Bidding Engine</h3>
+<p class="font-body-md text-on-surface-variant leading-relaxed">Transparent pricing mechanisms. Participate in live auctions for bulk harvests, ensuring market-driven, equitable value for all.</p>
+</div>
+</div>
+<!-- Feature 3 -->
+<div class="glass-panel rounded-[32px] p-10 flex flex-col gap-8 relative overflow-hidden group hover:-translate-y-2 transition-transform duration-500 subtle-glow">
+<div class="absolute -right-8 -top-8 p-8 opacity-5 group-hover:opacity-10 transition-opacity duration-500 transform group-hover:scale-110">
+<span class="material-symbols-outlined text-[180px] text-tertiary" data-icon="verified">verified</span>
+</div>
+<div class="w-14 h-14 rounded-2xl bg-tertiary-container/30 flex items-center justify-center border border-tertiary/30 backdrop-blur-md shadow-[0_0_15px_rgba(255,181,150,0.15)]">
+<span class="material-symbols-outlined text-tertiary" data-icon="shield" data-weight="fill" style="font-variation-settings: 'FILL' 1;">shield</span>
+</div>
+<div class="z-10 mt-auto">
+<h3 class="font-headline-md text-white text-[28px] mb-4 group-hover:text-tertiary transition-colors">Verified Roots</h3>
+<p class="font-body-md text-on-surface-variant leading-relaxed">Every farm on our platform undergoes rigorous admin approval, ensuring adherence to strict sustainable and organic practices.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Live Auctions Horizontal Scroll -->
+<section class="py-section-gap overflow-hidden bg-surface-container-lowest relative border-y border-white/5">
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-secondary-fixed/5 via-transparent to-transparent opacity-30 pointer-events-none"></div>
+<div class="px-container-margin max-w-[1440px] mx-auto mb-10 flex justify-between items-end relative z-10">
+<div>
+<div class="inline-flex items-center gap-3 text-secondary-fixed font-label-caps text-label-caps mb-4 bg-secondary-fixed/10 px-4 py-1.5 rounded-full border border-secondary-fixed/20">
+<span class="w-2 h-2 rounded-full bg-secondary-fixed animate-pulse shadow-[0_0_8px_rgba(195,244,0,0.8)]"></span>
+                        Live Now
+                    </div>
+<h2 class="font-headline-md text-headline-md text-white">Active Harvest Auctions</h2>
+</div>
+<a class="hidden sm:flex items-center gap-2 text-on-surface-variant hover:text-secondary-fixed transition-colors font-label-caps text-label-caps tracking-widest border border-white/10 px-6 py-2.5 rounded-full hover:border-secondary-fixed/50 bg-surface/50 backdrop-blur-sm" href="#">
+                    View All <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="flex overflow-x-auto gap-8 px-container-margin pb-12 snap-x snap-mandatory hide-scrollbar max-w-[1440px] mx-auto relative z-10">
+<style>
+                    .hide-scrollbar::-webkit-scrollbar { display: none; }
+                    .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+                </style>
+<!-- Auction Card 1 -->
+<div class="min-w-[340px] md:min-w-[420px] bg-surface-container-low rounded-[32px] p-2.5 flex flex-col snap-start relative group border border-white/5 hover:border-secondary-fixed/30 transition-colors duration-500 shadow-xl hover:shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+<div class="h-56 rounded-[24px] overflow-hidden relative">
+<img alt="Organic Heirloom Tomatoes" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A macro, ultra-detailed shot of freshly harvested, vibrant red organic heirloom tomatoes resting on dark, rich soil. The lighting is soft, natural morning light filtering through a high-tech greenhouse roof, highlighting the water droplets on the smooth skin of the tomatoes. The aesthetic is organic yet pristine, blending raw nature with modern eco-futuristic farming precision. Deep blacks and vivid reds dominate the palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxSLueUs8bIkyTYhT_15n_zNv_475T5B04hz58W0uvakrPl1c4F8SpzMvcGfETrI369gzygh3Ryq9ZqzHcuFp5z14b2Ai2Y8vdUInCD3mHOGyaPKfx6GIkz7cQTdm0NmsdWQ9KWzwNBRPJphxR3LBU8Oo93lYrh6i9i_jkG85i4bvVBy86wWSJtSDTIUY0s6mpJkNkMmNqTaLY16AYUUOvt0xw5ZTVvKNkgWiuWt3aycUfPN_NjgngvaOvcbKq3t4cl63CM2kEEoc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+<div class="absolute bottom-5 left-5 right-5 flex justify-between items-end">
+<span class="bg-black/40 backdrop-blur-md text-primary-fixed font-label-caps text-[10px] px-4 py-1.5 rounded-full border border-primary-fixed/30">
+                                Organic Certified
+                            </span>
+<div class="bg-black/60 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10 flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-[16px]" data-icon="timer">timer</span>
+<span class="text-white font-label-caps text-label-caps font-mono tracking-wider">02:14:59</span>
+</div>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-4 flex-grow">
+<div>
+<h3 class="font-headline-md text-white text-[22px] mb-1">Heirloom Tomatoes</h3>
+<p class="font-body-md text-on-surface-variant text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]" data-icon="spa">spa</span>
+                                Valley Grove Farms • 50kg Lot
+                            </p>
+</div>
+<div class="flex justify-between items-end mt-auto pt-6 border-t border-white/5">
+<div>
+<p class="text-on-surface-variant text-xs font-label-caps mb-2 tracking-widest uppercase">Current Bid</p>
+<p class="font-price-display text-[28px] text-secondary-fixed">$145.00</p>
+</div>
+<button class="bg-surface hover:bg-secondary-fixed hover:text-on-secondary-fixed text-white w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 border border-white/10 group-hover:border-secondary-fixed/50 shadow-lg">
+<span class="material-symbols-outlined" data-icon="arrow_outward">arrow_outward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Auction Card 2 -->
+<div class="min-w-[340px] md:min-w-[420px] bg-surface-container-low rounded-[32px] p-2.5 flex flex-col snap-start relative group border border-white/5 hover:border-secondary-fixed/30 transition-colors duration-500 shadow-xl hover:shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+<div class="h-56 rounded-[24px] overflow-hidden relative">
+<img alt="Hydroponic Microgreens" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A sleek, modern close-up of vibrant green hydroponic microgreens growing in a structured, futuristic tray system. The scene is lit by precise, soft ambient light with a subtle neon lime edge, emphasizing the delicate textures of the leaves. The background falls off into deep black shadow, creating a strong contrast that highlights the fresh, technological approach to agriculture in an eco-futurist setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMxs70-KkvPQUQece3WIE1fo3QI7EiniUo-zij8mHTvakeTKnM6Gmxv8gdUGo7uKo9-1owhnAxvwHenFet-1sHv7Z6wQN22WzbwQ5YXANwcvkbF8SL-f96lea8wzaM5Tq3HkHg64n4mjY22Cgp3UFWea1cvX2oGvHQ1thv5BVhzLuU4SCvPS-Hg1UpZoOUwQYKpNDjAxYy4yPwbHKalcInRGEgr5_2ci8yIFNlCuTV7kp9e3jqwZpKWCCW_tjp1a-2ftiRS8cs_9I"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+<div class="absolute bottom-5 left-5 right-5 flex justify-between items-end">
+<span class="bg-black/40 backdrop-blur-md text-secondary-fixed font-label-caps text-[10px] px-4 py-1.5 rounded-full border border-secondary-fixed/30">
+                                Hydroponic
+                            </span>
+<div class="bg-black/60 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10 flex items-center gap-2">
+<span class="material-symbols-outlined text-error text-[16px]" data-icon="timer">timer</span>
+<span class="text-white font-label-caps text-label-caps font-mono tracking-wider">00:45:12</span>
+</div>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-4 flex-grow">
+<div>
+<h3 class="font-headline-md text-white text-[22px] mb-1">Premium Microgreens</h3>
+<p class="font-body-md text-on-surface-variant text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]" data-icon="science">science</span>
+                                AeroFarms Tech • 10kg Lot
+                            </p>
+</div>
+<div class="flex justify-between items-end mt-auto pt-6 border-t border-white/5">
+<div>
+<p class="text-on-surface-variant text-xs font-label-caps mb-2 tracking-widest uppercase">Current Bid</p>
+<p class="font-price-display text-[28px] text-secondary-fixed">$85.50</p>
+</div>
+<button class="bg-surface hover:bg-secondary-fixed hover:text-on-secondary-fixed text-white w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 border border-white/10 group-hover:border-secondary-fixed/50 shadow-lg">
+<span class="material-symbols-outlined" data-icon="arrow_outward">arrow_outward</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Auction Card 3 -->
+<div class="min-w-[340px] md:min-w-[420px] bg-surface-container-low rounded-[32px] p-2.5 flex flex-col snap-start relative group border border-white/5 hover:border-secondary-fixed/30 transition-colors duration-500 shadow-xl hover:shadow-[0_10px_40px_rgba(0,0,0,0.5)]">
+<div class="h-56 rounded-[24px] overflow-hidden relative">
+<img alt="Artisan Honey" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A moody, high-end product shot of artisan honey in a sleek, minimalist glass jar. The amber liquid glows softly from backlighting, set against a dark, textured organic background. A delicate honeycomb structure is visible inside. The aesthetic merges raw natural elements with a refined, futuristic luxury presentation. The lighting is precise, highlighting the golden hues and deep brown shadows of the eco-friendly packaging." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZeZ0WT8JDdyaiJ6kKXGHrXNR55zq9XOzf5GNHvZc2-TxVYRuqX1JZLKHfPuLHtH91yzemEKGFXBavqo_LURkC-HNRVH_cOPypFU-8_Zr2NYSWH62GgMUe_MoUDOuvdMyU1i845FsEfNI2qOnzRBvUQLg_i1uFFWFibMHmNvgTYuf61Ds3A9nn-WtImrXs8XVkSZbfwQkkRxWAQdpGUP1Fq4l_3ts8zX-v_syBdXVO1-Qlve3dshNRvSsS31E1NfpCjYLUOPlME6A"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+<div class="absolute bottom-5 left-5 right-5 flex justify-between items-end">
+<span class="bg-black/40 backdrop-blur-md text-tertiary font-label-caps text-[10px] px-4 py-1.5 rounded-full border border-tertiary/30">
+                                Sustainable
+                            </span>
+<div class="bg-black/60 backdrop-blur-md px-4 py-2 rounded-xl border border-white/10 flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]" data-icon="timer">timer</span>
+<span class="text-white font-label-caps text-label-caps font-mono tracking-wider">12:30:00</span>
+</div>
+</div>
+</div>
+<div class="p-6 flex flex-col gap-4 flex-grow">
+<div>
+<h3 class="font-headline-md text-white text-[22px] mb-1">Wildflower Honey Lot</h3>
+<p class="font-body-md text-on-surface-variant text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]" data-icon="hive">hive</span>
+                                Apiary Next • 25kg Batch
+                            </p>
+</div>
+<div class="flex justify-between items-end mt-auto pt-6 border-t border-white/5">
+<div>
+<p class="text-on-surface-variant text-xs font-label-caps mb-2 tracking-widest uppercase">Current Bid</p>
+<p class="font-price-display text-[28px] text-secondary-fixed">$320.00</p>
+</div>
+<button class="bg-surface hover:bg-secondary-fixed hover:text-on-secondary-fixed text-white w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 border border-white/10 group-hover:border-secondary-fixed/50 shadow-lg">
+<span class="material-symbols-outlined" data-icon="arrow_outward">arrow_outward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Impact Stats -->
+<section class="px-container-margin py-section-gap max-w-[1440px] mx-auto text-center relative">
+<h2 class="font-headline-md text-headline-md text-white mb-16 relative inline-block">
+                Growing a Better World
+                <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-12 h-1 bg-gradient-to-r from-primary-fixed to-secondary-fixed rounded-full"></div>
+</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+<div class="glass-panel p-12 rounded-[40px] flex flex-col items-center justify-center border-t-4 border-t-primary-fixed/50 hover:bg-surface-container/50 transition-colors duration-500">
+<div class="w-20 h-20 rounded-full bg-primary-fixed/10 flex items-center justify-center mb-6 border border-primary-fixed/20 shadow-[0_0_20px_rgba(197,239,173,0.1)]">
+<span class="material-symbols-outlined text-primary-fixed text-[40px]" data-icon="co2">co2</span>
+</div>
+<p class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-3">1M+ Kg</p>
+<p class="font-label-caps text-label-caps text-primary-fixed tracking-[0.2em] uppercase">Carbon Offset</p>
+</div>
+<div class="glass-panel p-12 rounded-[40px] flex flex-col items-center justify-center border-t-4 border-t-secondary-fixed/50 hover:bg-surface-container/50 transition-colors duration-500">
+<div class="w-20 h-20 rounded-full bg-secondary-fixed/10 flex items-center justify-center mb-6 border border-secondary-fixed/20 shadow-[0_0_20px_rgba(195,244,0,0.1)]">
+<span class="material-symbols-outlined text-secondary-fixed text-[40px]" data-icon="groups">groups</span>
+</div>
+<p class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg text-white mb-3">5,000+</p>
+<p class="font-label-caps text-label-caps text-secondary-fixed tracking-[0.2em] uppercase">Local Farms Empowered</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest w-full mt-section-gap border-t border-white/5 py-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-container-margin max-w-7xl mx-auto">
+<!-- Brand -->
+<div class="col-span-1 md:col-span-1 mb-8 md:mb-0">
+<div class="font-headline-md text-headline-md text-secondary-fixed mb-4">
+                    Farmora
+                </div>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xs leading-relaxed">
+                    © 2026 Farmora Ecosystems. Regenerating the earth through precision technology.
+                </p>
+</div>
+<!-- Links -->
+<div class="col-span-1 md:col-span-3 flex flex-wrap gap-x-12 gap-y-6 md:justify-end items-center">
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary-fixed tracking-widest transition-colors" href="#">Sustainability Report</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary-fixed tracking-widest transition-colors" href="#">Impact Stats</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary-fixed tracking-widest transition-colors" href="#">Farmer Portal</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary-fixed tracking-widest transition-colors" href="#">Privacy</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant hover:text-secondary-fixed tracking-widest transition-colors" href="#">Terms</a>
+</div>
+</div>
+</footer>
+</body></html>

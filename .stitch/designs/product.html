@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Product Detail &amp; Bidding - Farmora</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,600&amp;family=Sora:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-variant": "#333532",
+                        "secondary-fixed": "#c3f400",
+                        "on-primary-container": "#98c083",
+                        "tertiary-container": "#753413",
+                        "on-primary": "#173809",
+                        "surface-tint": "#a9d293",
+                        "on-primary-fixed": "#062100",
+                        "on-tertiary": "#581e00",
+                        "inverse-primary": "#446733",
+                        "on-background": "#e3e3de",
+                        "on-tertiary-fixed-variant": "#753413",
+                        "inverse-surface": "#e3e3de",
+                        "secondary": "#ffffff",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed": "#161e00",
+                        "surface-container-lowest": "#0d0f0c",
+                        "outline": "#8d9386",
+                        "on-secondary-container": "#556d00",
+                        "error-container": "#93000a",
+                        "outline-variant": "#43493e",
+                        "secondary-fixed-dim": "#abd600",
+                        "on-primary-fixed-variant": "#2d4f1e",
+                        "surface-container": "#1e201d",
+                        "surface-container-low": "#1a1c19",
+                        "surface-dim": "#121411",
+                        "inverse-on-surface": "#2f312e",
+                        "surface": "#121411",
+                        "on-surface-variant": "#c3c8bb",
+                        "on-error": "#690005",
+                        "tertiary-fixed": "#ffdbcd",
+                        "surface-bright": "#383a36",
+                        "tertiary": "#ffb596",
+                        "secondary-container": "#c3f400",
+                        "surface-container-highest": "#333532",
+                        "on-error-container": "#ffdad6",
+                        "primary": "#a9d293",
+                        "on-tertiary-fixed": "#360f00",
+                        "background": "#121411",
+                        "surface-container-high": "#292b27",
+                        "on-secondary-fixed-variant": "#3c4d00",
+                        "primary-fixed": "#c5efad",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "on-surface": "#e3e3de",
+                        "primary-container": "#2d4f1e",
+                        "primary-fixed-dim": "#a9d293",
+                        "on-secondary": "#283500",
+                        "on-tertiary-container": "#fb9f75"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "card-padding": "24px",
+                        "container-margin": "24px",
+                        "section-gap": "80px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "label-caps": ["Sora"],
+                        "price-display": ["Sora"],
+                        "display-lg-mobile": ["Literata"],
+                        "body-md": ["Sora"],
+                        "display-lg": ["Literata"],
+                        "body-lg": ["Sora"],
+                        "headline-md": ["Literata"]
+                    },
+                    "fontSize": {
+                        "label-caps": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "price-display": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "display-lg": ["56px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .bg-noise {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-panel-floating {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 16px 40px -10px rgba(204, 255, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-[#0a0b09] text-on-background min-h-screen relative font-body-md">
+<div class="fixed inset-0 opacity-[0.03] pointer-events-none bg-noise z-0"></div>
+<nav class="bg-surface/10 backdrop-blur-xl fixed top-0 w-full z-50 border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
+<div class="flex justify-between items-center px-container-margin py-4 w-full">
+<div class="font-headline-md text-headline-md font-bold text-secondary-fixed tracking-tight">
+                Farmora
+            </div>
+<div class="hidden md:flex space-x-8">
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-secondary-fixed transition-colors duration-300" href="#">Marketplace</a>
+<a class="text-secondary-fixed border-b-2 border-secondary-fixed pb-1 font-label-caps text-label-caps scale-95 transition-transform" href="#">Auctions</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-secondary-fixed transition-colors duration-300" href="#">Our Story</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-secondary-fixed transition-colors duration-300" href="#">Farmers</a>
+</div>
+<div class="flex items-center space-x-6">
+<div class="flex space-x-4">
+<button class="text-on-surface-variant hover:text-secondary-fixed transition-colors duration-300">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+<button class="text-on-surface-variant hover:text-secondary-fixed transition-colors duration-300">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+<button class="hidden md:block bg-secondary-fixed text-on-secondary-fixed font-label-caps text-label-caps px-6 py-3 rounded-full hover:shadow-[0_0_20px_rgba(195,244,0,0.3)] transition-all">
+                    Join Harvest
+                </button>
+</div>
+</div>
+</nav>
+<main class="pt-[120px] pb-section-gap px-container-margin max-w-[1440px] mx-auto relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 mb-section-gap">
+<div class="lg:col-span-7 flex flex-col gap-4">
+<div class="w-full aspect-[4/3] rounded-DEFAULT overflow-hidden relative glass-panel group">
+<img alt="Organic Heirloom Tomatoes" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A macro shot of vibrant, deeply textured organic heirloom tomatoes resting on dark, damp soil. The lighting is cinematic and moody, highlighting the water droplets on the deep red and dark green skin. The overall aesthetic is eco-futuristic, blending raw agriculture with high-contrast, premium digital presentation in a dark mode environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPCogc0hFAqVZmACuRQyMQB9tK8t-i6LvjiYN9wa5ct4irEavWAGj7BCPF6A3r7I77jYk8eAnCeF9nwXLkhMcDNgml8QXj3nUnMRQy7KtzNbogMTKtANqB4udZAtApWI1liijwLqA2RSCrg_cWUiVgdd8EhMvQLoVjT10TYPpxpZC6rjUxt45BGCMD_0HY-E2pRT2FNoAGDs3rb1xrcIAwbrbyXFPzHSVYaLJgQQa03gL5-XSlODAzi6O2NnleJDGsAiBrxLSg_Do"/>
+<div class="absolute top-4 left-4 flex gap-2">
+<span class="bg-[#173809] text-secondary-fixed font-label-caps text-label-caps px-3 py-1 rounded-full border border-secondary-fixed/30 backdrop-blur-md">
+                            Organic Certified
+                        </span>
+<span class="glass-panel text-on-surface font-label-caps text-label-caps px-3 py-1 rounded-full">
+                            Lot #492-B
+                        </span>
+</div>
+</div>
+<div class="grid grid-cols-4 gap-4">
+<div class="aspect-square rounded-DEFAULT overflow-hidden cursor-pointer border-2 border-secondary-fixed relative">
+<img alt="Thumb 1" class="w-full h-full object-cover" data-alt="Thumbnail of vibrant, deeply textured organic heirloom tomatoes resting on dark, damp soil." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwkhvpLSd7yBr4lRP5eeshn9tDb8KQFixL_ILNHeBEVnDTonGOs5IMy4XCxZKT73P6hSIoeV0_6rGrWKkLZL-Q3xnTxaUc1QhtctswtFLobDFFcGp-jevEC7QvtIGbTlF6PsA8LmreCIx51_UC2QmPjDQp3Didb4wBgQvUvWJ6st7rHmvdxG8WFfYnO4k_icxSXXTSZSj8k6IE4BzlViz4P811ipnWNt52zqQ1ZRNhrm1szSyN9Gt3j1MHzzi1dM3ujll6T0JrreA"/>
+<div class="absolute inset-0 bg-secondary-fixed/10 pointer-events-none"></div>
+</div>
+<div class="aspect-square rounded-DEFAULT overflow-hidden cursor-pointer glass-panel hover:border-white/30 transition-colors">
+<img alt="Thumb 2" class="w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity" data-alt="Thumbnail showing a wooden crate filled with various types of heirloom tomatoes in a dark barn setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZjWS-jfWU7IZ68mUmyxyZZg48hYEdYB8cXNvMe0ke6WUWmIYGwHh0k4cZIsG3NTUvW45P6960k7n5WaRyl2iR3L5MrYLB2BpSZblrJM8cHjkrKMcE51h21Vt7btCrCtCLwu4-NcNmwOakdayGSjpf87r5kXEJ8gSPZzPIt_lJPSPcQFqhes41_lANYTNkNzWFx916kG2s4lIF6dr71J9-bliiMhLH5RrubKYLieTeZWAiYO6I7lPlC79YfWqKm18RllwNArJWgn4"/>
+</div>
+<div class="aspect-square rounded-DEFAULT overflow-hidden cursor-pointer glass-panel hover:border-white/30 transition-colors">
+<img alt="Thumb 3" class="w-full h-full object-cover opacity-70 hover:opacity-100 transition-opacity" data-alt="Thumbnail close up of a single large, ribbed heirloom tomato with dew drops, against a black background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEp_pIfxcJrBBpYIWCvADmaf2bHN0cBHFSq0lsoEnoI3iPPcuEs0-HbkBL8YLhz2ngGzLFUBfeqOOSsf73_8dEVZOqOmJ4duVvb0yccZWDD5OT4tfIIkDGa9mGKb4tuWphULvfxtxIxXQXy6vLgRpZ4MJjjufFh39oc47hFGM-3gLaQhadbBkHt6m3Lf0pmXWbz8nOET9ItK97pxxB0um7TVmEFNnFiWlw8wezc5s8A-sweexLuCpz99IeUTpkKXblV9cpkwbyn6c"/>
+</div>
+<div class="aspect-square rounded-DEFAULT overflow-hidden cursor-pointer glass-panel hover:border-white/30 transition-colors flex items-center justify-center bg-surface-container">
+<span class="material-symbols-outlined text-on-surface-variant" style="font-size: 32px;">play_circle</span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 flex flex-col gap-6">
+<div>
+<h1 class="font-headline-md text-headline-md text-on-surface mb-2">Heritage Crimson Tomatoes</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">A rare, deeply ribbed variety known for its intense umami flavor and low acidity. Cultivated in volcanic soil.</p>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="glass-panel p-4 rounded-DEFAULT">
+<div class="text-on-surface-variant text-sm mb-1">Harvest Date</div>
+<div class="font-body-md text-body-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed" style="font-size: 18px;">calendar_today</span>
+                            Oct 24, 2026
+                        </div>
+</div>
+<div class="glass-panel p-4 rounded-DEFAULT">
+<div class="text-on-surface-variant text-sm mb-1">Available Qty</div>
+<div class="font-body-md text-body-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed" style="font-size: 18px;">inventory_2</span>
+                            500 kg
+                        </div>
+</div>
+<div class="glass-panel p-4 rounded-DEFAULT">
+<div class="text-on-surface-variant text-sm mb-1">Grade</div>
+<div class="font-body-md text-body-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed" style="font-size: 18px;">star</span>
+                            Premium A+
+                        </div>
+</div>
+<div class="glass-panel p-4 rounded-DEFAULT">
+<div class="text-on-surface-variant text-sm mb-1">Shipping From</div>
+<div class="font-body-md text-body-md text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed" style="font-size: 18px;">location_on</span>
+                            Oregon Valley
+                        </div>
+</div>
+</div>
+<div class="glass-panel-floating p-6 rounded-lg mt-4 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-secondary-fixed/10 blur-[50px] rounded-full pointer-events-none"></div>
+<div class="flex justify-between items-end mb-6">
+<div>
+<div class="text-on-surface-variant text-sm mb-1 uppercase tracking-wider font-semibold">Current Highest Bid</div>
+<div class="font-price-display text-price-display text-secondary-fixed text-4xl">₹4,250</div>
+<div class="text-on-surface-variant text-xs mt-1">per 50kg crate</div>
+</div>
+<div class="text-right">
+<div class="text-on-surface-variant text-sm mb-1 uppercase tracking-wider font-semibold">Ends In</div>
+<div class="font-price-display text-price-display text-error flex items-center gap-2">
+<span class="material-symbols-outlined" style="font-size: 20px;">timer</span>
+                                02h 45m 12s
+                            </div>
+</div>
+</div>
+<form class="space-y-4">
+<div>
+<label class="sr-only">Bid Amount</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-price-display">₹</span>
+<input class="w-full bg-surface-container-low border border-white/10 rounded-full py-4 pl-10 pr-4 font-price-display text-price-display text-on-surface focus:outline-none focus:border-secondary-fixed focus:ring-1 focus:ring-secondary-fixed transition-all" min="4300" placeholder="Enter amount" step="50" type="number" value="4300"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">Min increment: ₹50</span>
+</div>
+<p class="text-secondary-fixed text-xs mt-2 ml-4">Valid bid. Press to confirm.</p>
+</div>
+<button class="w-full bg-secondary-fixed text-on-secondary-fixed font-label-caps text-label-caps py-4 rounded-full hover:shadow-[0_0_24px_rgba(195,244,0,0.4)] transition-all flex items-center justify-center gap-2" type="button">
+                            Place Your Bid
+                            <span class="material-symbols-outlined" style="font-size: 18px;">gavel</span>
+</button>
+</form>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-section-gap">
+<div class="glass-panel p-card-padding rounded-DEFAULT flex flex-col h-[400px]">
+<h3 class="font-label-caps text-label-caps text-on-surface mb-6 border-b border-white/5 pb-4">Recent Bidding Activity</h3>
+<div class="flex-1 overflow-y-auto pr-2 space-y-4 custom-scrollbar">
+<div class="flex justify-between items-center p-3 rounded-DEFAULT bg-surface-container/50 border border-white/5">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-xs text-on-surface-variant">A***R</div>
+<div>
+<div class="text-on-surface font-medium text-sm">Placed a bid</div>
+<div class="text-on-surface-variant text-xs">2 mins ago</div>
+</div>
+</div>
+<div class="font-price-display text-sm text-secondary-fixed">₹4,250</div>
+</div>
+<div class="flex justify-between items-center p-3 rounded-DEFAULT hover:bg-surface-container/30 transition-colors border border-transparent">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-xs text-on-surface-variant">V***K</div>
+<div>
+<div class="text-on-surface font-medium text-sm">Placed a bid</div>
+<div class="text-on-surface-variant text-xs">15 mins ago</div>
+</div>
+</div>
+<div class="font-price-display text-sm text-on-surface-variant">₹4,200</div>
+</div>
+<div class="flex justify-between items-center p-3 rounded-DEFAULT hover:bg-surface-container/30 transition-colors border border-transparent">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-xs text-on-surface-variant">S***9</div>
+<div>
+<div class="text-on-surface font-medium text-sm">Placed a bid</div>
+<div class="text-on-surface-variant text-xs">1 hour ago</div>
+</div>
+</div>
+<div class="font-price-display text-sm text-on-surface-variant">₹4,050</div>
+</div>
+<div class="flex justify-between items-center p-3 rounded-DEFAULT hover:bg-surface-container/30 transition-colors border border-transparent">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-xs text-on-surface-variant">M***Y</div>
+<div>
+<div class="text-on-surface font-medium text-sm">Placed a bid</div>
+<div class="text-on-surface-variant text-xs">2 hours ago</div>
+</div>
+</div>
+<div class="font-price-display text-sm text-on-surface-variant">₹3,900</div>
+</div>
+</div>
+</div>
+<div class="glass-panel p-card-padding rounded-DEFAULT flex flex-col justify-between h-[400px] relative overflow-hidden">
+<div class="absolute -right-20 -bottom-20 w-64 h-64 bg-primary/5 blur-[80px] rounded-full pointer-events-none"></div>
+<div>
+<h3 class="font-label-caps text-label-caps text-on-surface mb-6 border-b border-white/5 pb-4">Provenance &amp; Grower</h3>
+<div class="flex items-start gap-4 mb-6">
+<img alt="Farmer Profile" class="w-16 h-16 rounded-full object-cover border-2 border-surface-variant" data-alt="A close-up portrait of a rugged, weathered farmer with a slight smile, standing in a dim, misty field. The lighting highlights the texture of his skin and the worn fabric of his jacket. Deep earth tones dominate the palette, conveying an organic, authentic eco-futuristic vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_ELh7xUN7d5ArZUySb3gdAVbUxuX1vdmid_O00llmcuISc2mm4nIvvWyNd8jNV2Xgn5QsOKFPDZ6o91hbykz03McwUDEYWPv4hGqBY4FdC6DPZtsTl1w853vN6DrzE3Tq_rtAEm4H4k9IiMqOGJBdbFl-2rQHab-nKDs1WxLaTycT-NmsP1b6NVzRUaU0f0yLHV9XAaARxKL5y9YYwkfybVcsRY7nuY4EbCHSyuncfPXAjpjchttxNO1Z6BEdQfiZALnpMXKJH3I"/>
+<div>
+<div class="font-headline-md text-xl text-on-surface">Green Valley Farms</div>
+<div class="text-on-surface-variant text-sm flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined" style="font-size: 14px;">location_on</span>
+                                Willamette Valley, OR
+                            </div>
+<div class="flex items-center gap-1 mt-2">
+<span class="material-symbols-outlined text-secondary-fixed" style="font-size: 16px; font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary-fixed" style="font-size: 16px; font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary-fixed" style="font-size: 16px; font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary-fixed" style="font-size: 16px; font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-secondary-fixed" style="font-size: 16px;">star_half</span>
+<span class="text-sm text-on-surface-variant ml-1">4.8 (124 reviews)</span>
+</div>
+</div>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed line-clamp-3 mb-6">
+                        Third-generation regenerative farmers specializing in heirloom varietals. Our soil is nourished using closed-loop composting systems, ensuring zero synthetic inputs. We believe in precision agriculture guided by nature's own rhythms.
+                    </p>
+</div>
+<div class="flex gap-4">
+<button class="flex-1 bg-surface-container border border-white/10 text-on-surface font-label-caps text-label-caps py-3 rounded-full hover:bg-surface-bright transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" style="font-size: 18px;">mail</span>
+                        Message Farmer
+                    </button>
+<button class="bg-surface-container border border-white/10 text-on-surface p-3 rounded-full hover:bg-surface-bright transition-colors">
+<span class="material-symbols-outlined" style="font-size: 18px;">open_in_new</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-surface-container-lowest w-full mt-section-gap border-t border-white/5">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-container-margin py-card-padding max-w-7xl mx-auto">
+<div class="col-span-1 md:col-span-4 mb-8">
+<div class="font-headline-md text-headline-md text-on-surface">Farmora</div>
+</div>
+<div class="col-span-1 md:col-span-4 flex flex-wrap gap-6 mb-8 border-b border-white/5 pb-8">
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors" href="#">Sustainability Report</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors" href="#">Impact Stats</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors" href="#">Farmer Portal</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors" href="#">Privacy</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors" href="#">Terms</a>
+</div>
+<div class="col-span-1 md:col-span-4">
+<p class="font-body-md text-body-md text-on-surface-variant">© 2026 Farmora Ecosystems. Regenerating the earth through precision technology.</p>
+</div>
+</div>
+</footer>
+<style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: rgba(195, 244, 0, 0.3);
+        }
+    </style>
+</body></html>

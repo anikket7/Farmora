@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Farmora - New Listing</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&amp;family=Sora:wght@100..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#0d0f0c",
+                        "secondary-fixed": "#c3f400",
+                        "surface-dim": "#121411",
+                        "on-surface-variant": "#c3c8bb",
+                        "inverse-surface": "#e3e3de",
+                        "surface-container-high": "#292b27",
+                        "secondary-container": "#c3f400",
+                        "primary": "#a9d293",
+                        "on-primary-container": "#98c083",
+                        "on-background": "#e3e3de",
+                        "tertiary": "#ffb596",
+                        "on-surface": "#e3e3de",
+                        "on-secondary-container": "#556d00",
+                        "surface-tint": "#a9d293",
+                        "on-tertiary-fixed": "#360f00",
+                        "surface-container-low": "#1a1c19",
+                        "secondary": "#ffffff",
+                        "on-primary-fixed": "#062100",
+                        "surface-container-highest": "#333532",
+                        "on-tertiary": "#581e00",
+                        "surface": "#121411",
+                        "tertiary-container": "#753413",
+                        "primary-fixed": "#c5efad",
+                        "tertiary-fixed-dim": "#ffb596",
+                        "primary-fixed-dim": "#a9d293",
+                        "on-tertiary-container": "#fb9f75",
+                        "outline": "#8d9386",
+                        "on-secondary-fixed": "#161e00",
+                        "inverse-on-surface": "#2f312e",
+                        "surface-variant": "#333532",
+                        "on-error": "#690005",
+                        "surface-bright": "#383a36",
+                        "surface-container": "#1e201d",
+                        "tertiary-fixed": "#ffdbcd",
+                        "on-tertiary-fixed-variant": "#753413",
+                        "on-primary-fixed-variant": "#2d4f1e",
+                        "on-secondary": "#283500",
+                        "error": "#ffb4ab",
+                        "inverse-primary": "#446733",
+                        "primary-container": "#2d4f1e",
+                        "on-primary": "#173809",
+                        "secondary-fixed-dim": "#abd600",
+                        "error-container": "#93000a",
+                        "background": "#121411",
+                        "on-secondary-fixed-variant": "#3c4d00",
+                        "on-error-container": "#ffdad6",
+                        "outline-variant": "#43493e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "card-padding": "24px",
+                        "container-margin": "24px",
+                        "section-gap": "80px",
+                        "gutter": "16px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "display-lg-mobile": ["Literata"],
+                        "price-display": ["Sora"],
+                        "headline-md": ["Literata"],
+                        "body-lg": ["Sora"],
+                        "label-caps": ["Sora"],
+                        "body-md": ["Sora"],
+                        "display-lg": ["Literata"]
+                    },
+                    "fontSize": {
+                        "display-lg-mobile": ["36px", { "lineHeight": "1.2", "fontWeight": "600" }],
+                        "price-display": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "display-lg": ["56px", { "lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Ambient noise overlay for Eco-Futurism */
+        .ambient-noise {
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+            pointer-events: none;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #333532; border-radius: 99px; }
+        ::-webkit-scrollbar-thumb:hover { background: #43493e; }
+    </style>
+</head>
+<body class="bg-surface-container-lowest text-on-surface h-screen w-full flex overflow-hidden font-body-md relative">
+<!-- Background noise layer -->
+<div class="absolute inset-0 ambient-noise z-0"></div>
+<!-- SideNavBar (from JSON Anchor) -->
+<nav class="bg-surface-container/30 backdrop-blur-2xl h-screen w-64 fixed left-0 top-0 border-r border-white/5 shadow-[4px_0_24px_rgba(204,255,0,0.05)] flex flex-col h-full py-8 z-40">
+<!-- Header -->
+<div class="px-6 mb-10 flex flex-col items-start">
+<div class="w-12 h-12 rounded-full overflow-hidden mb-4 border border-secondary-fixed/30 p-0.5">
+<img alt="Admin User Profile" class="w-full h-full object-cover rounded-full" data-alt="A futuristic circular avatar portrait of an agricultural technician in subtle low-light, wearing modern minimal eco-wear. A faint neon lime rim-light accentuates the profile. The mood is highly professional, clean, and advanced, perfectly embodying the precision nature brand aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtoUvzU-nSnj91k7b0R_s_kbunYdvi3rJ5hqx8npkHJj0IJExNJUpKtsQImnbcdTx-rH8oGJBsWhH2FABikKmN_OwFB10NbjVZMI5pR3t-6QeVJt_pamhSURLyeE_SaObT4rY3nU66pq5Se_lwRFVetpn8Wm3YXu5RZAgEzXggXfbxQLuWnLQg4fF7qh02FSBHQ700Jpr8EAuhTedCsCczl98h7MXZGZWf0gI0l21W2EZY4twAhwowE1tX9Yh7mKvuhesYqwnlKvs"/>
+</div>
+<h1 class="font-headline-md text-headline-md text-secondary-fixed mb-1 tracking-tight text-[24px]">Farmora Admin</h1>
+<p class="font-body-md text-body-md text-on-surface-variant text-[14px]">Precision Nature Suite</p>
+</div>
+<!-- Navigation Links -->
+<div class="flex-1 flex flex-col gap-2">
+<!-- Overview -->
+<a class="text-on-surface-variant hover:bg-white/5 px-4 py-3 flex items-center gap-3 transition-all hover:text-secondary-fixed" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">dashboard</span>
+<span class="font-label-caps text-label-caps">Overview</span>
+</a>
+<!-- Verification -->
+<a class="text-on-surface-variant hover:bg-white/5 px-4 py-3 flex items-center gap-3 transition-all hover:text-secondary-fixed" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">verified_user</span>
+<span class="font-label-caps text-label-caps">Verification</span>
+</a>
+<!-- Inventory (ACTIVE) -->
+<a class="bg-primary-container/40 text-primary-fixed border-l-4 border-secondary-fixed px-4 py-3 flex items-center gap-3 translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+<span class="font-label-caps text-label-caps">Inventory</span>
+</a>
+<!-- Analytics -->
+<a class="text-on-surface-variant hover:bg-white/5 px-4 py-3 flex items-center gap-3 transition-all hover:text-secondary-fixed" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">monitoring</span>
+<span class="font-label-caps text-label-caps">Analytics</span>
+</a>
+<!-- Settings -->
+<a class="text-on-surface-variant hover:bg-white/5 px-4 py-3 flex items-center gap-3 transition-all hover:text-secondary-fixed" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+<span class="font-label-caps text-label-caps">Settings</span>
+</a>
+</div>
+<!-- Footer Actions -->
+<div class="px-4 mt-auto flex flex-col gap-2">
+<button class="w-full bg-surface-variant/50 border border-white/10 hover:border-secondary-fixed/50 text-on-surface hover:text-secondary-fixed px-4 py-3 rounded-full font-label-caps text-label-caps transition-all flex items-center justify-center mb-4">
+                System Status
+            </button>
+<a class="text-on-surface-variant hover:bg-white/5 px-4 py-3 flex items-center gap-3 transition-all hover:text-secondary-fixed" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">help</span>
+<span class="font-label-caps text-label-caps">Support</span>
+</a>
+<a class="text-on-surface-variant hover:bg-white/5 px-4 py-3 flex items-center gap-3 transition-all hover:text-secondary-fixed" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">logout</span>
+<span class="font-label-caps text-label-caps">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Canvas -->
+<main class="ml-64 flex-1 h-screen overflow-y-auto z-10 relative">
+<div class="max-w-6xl mx-auto px-container-margin py-12">
+<!-- Page Header -->
+<header class="flex items-end justify-between mb-10">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">New Listing</h2>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-2xl">Create a new harvest entry for the global marketplace. Ensure precision details for optimal algorithmic matching.</p>
+</div>
+<div class="flex gap-4">
+<button class="px-6 py-3 rounded-full border border-white/10 hover:bg-white/5 font-label-caps text-label-caps text-on-surface transition-colors">Discard</button>
+<button class="px-6 py-3 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-caps text-label-caps hover:shadow-[0_0_16px_rgba(195,244,0,0.4)] transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">cloud_upload</span>
+                        Publish Listing
+                    </button>
+</div>
+</header>
+<!-- Bento Grid Form Canvas -->
+<form class="grid grid-cols-1 lg:grid-cols-12 gap-gutter pb-section-gap">
+<!-- Left Column: Primary Details (Span 7) -->
+<div class="lg:col-span-7 flex flex-col gap-gutter">
+<!-- Media Upload Card -->
+<div class="bg-surface-container-low/60 backdrop-blur-3xl rounded-[2rem] border border-white/10 p-card-padding relative overflow-hidden flex flex-col items-center justify-center min-h-[240px] group cursor-pointer hover:border-secondary-fixed/50 transition-colors">
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/80 to-transparent z-0"></div>
+<div class="relative z-10 flex flex-col items-center text-center">
+<div class="w-16 h-16 rounded-full bg-surface-container border border-white/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-[0_0_24px_rgba(195,244,0,0.1)] group-hover:shadow-[0_0_24px_rgba(195,244,0,0.3)]">
+<span class="material-symbols-outlined text-secondary-fixed text-[32px]">add_a_photo</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface mb-2">Upload Harvest Imagery</span>
+<span class="font-body-md text-body-md text-on-surface-variant text-[14px]">Drag and drop high-res spatial or RAW photos.</span>
+</div>
+</div>
+<!-- Core Information Card -->
+<div class="bg-surface-container-low/60 backdrop-blur-3xl rounded-[2rem] border border-white/10 p-card-padding">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">eco</span>
+<h3 class="font-label-caps text-label-caps text-on-surface">Product Origins</h3>
+</div>
+<div class="space-y-6">
+<!-- Name Field -->
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant ml-2" for="product_name">Produce Name</label>
+<input class="w-full bg-surface-dim border border-white/10 rounded-full px-5 py-4 text-on-surface focus:outline-none focus:border-secondary-fixed focus:ring-1 focus:ring-secondary-fixed font-body-md text-body-md transition-all placeholder:text-on-surface-variant/50" id="product_name" placeholder="e.g. Heirloom Purple Tomatoes" type="text"/>
+</div>
+<!-- Category & Quantity Row -->
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant ml-2" for="category">Category</label>
+<div class="relative">
+<select class="w-full bg-surface-dim border border-white/10 rounded-full px-5 py-4 text-on-surface focus:outline-none focus:border-secondary-fixed focus:ring-1 focus:ring-secondary-fixed font-body-md text-body-md appearance-none cursor-pointer transition-all" id="category">
+<option disabled="" selected="" value="">Select Category...</option>
+<option value="vegetables">Vegetables &amp; Roots</option>
+<option value="fruits">Orchard Fruits</option>
+<option value="grains">Grains &amp; Cereals</option>
+<option value="legumes">Legumes &amp; Pulses</option>
+</select>
+<span class="material-symbols-outlined absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant ml-2" for="quantity">Yield Volume</label>
+<div class="flex rounded-full border border-white/10 bg-surface-dim overflow-hidden focus-within:border-secondary-fixed focus-within:ring-1 focus-within:ring-secondary-fixed transition-all">
+<input class="flex-1 bg-transparent border-none px-5 py-4 text-on-surface focus:outline-none focus:ring-0 font-body-md text-body-md placeholder:text-on-surface-variant/50" id="quantity" placeholder="0.00" type="number"/>
+<div class="border-l border-white/10 flex items-center px-4 bg-surface-container/50">
+<select class="bg-transparent border-none text-on-surface focus:ring-0 font-label-caps text-label-caps cursor-pointer">
+<option>KG</option>
+<option>TONS</option>
+<option>DOZ</option>
+<option>BINS</option>
+</select>
+</div>
+</div>
+</div>
+</div>
+<!-- Description -->
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant ml-2" for="description">Sensory Notes &amp; Certifications</label>
+<textarea class="w-full bg-surface-dim border border-white/10 rounded-[1.5rem] px-5 py-4 text-on-surface focus:outline-none focus:border-secondary-fixed focus:ring-1 focus:ring-secondary-fixed font-body-md text-body-md transition-all placeholder:text-on-surface-variant/50 resize-none" id="description" placeholder="Detail the growth process, soil metrics, and sensory profile..." rows="4"></textarea>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Distribution & Pricing (Span 5) -->
+<div class="lg:col-span-5 flex flex-col gap-gutter">
+<!-- Listing Type Logic Card -->
+<div class="bg-surface-container-low/60 backdrop-blur-3xl rounded-[2rem] border border-secondary-fixed/20 p-card-padding relative overflow-hidden shadow-[0_8px_32px_rgba(195,244,0,0.02)]">
+<!-- Decorative ambient glow -->
+<div class="absolute -top-20 -right-20 w-48 h-48 bg-secondary-fixed/10 blur-[64px] rounded-full pointer-events-none"></div>
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-secondary-fixed">gavel</span>
+<h3 class="font-label-caps text-label-caps text-secondary-fixed">Distribution Model</h3>
+</div>
+<!-- Segmented Toggle via Radio Buttons (Bidding selected by default for visual demonstration) -->
+<div class="flex bg-surface-dim p-1.5 rounded-full border border-white/5 mb-8 relative">
+<!-- Direct Buy option -->
+<label class="flex-1 text-center cursor-pointer relative z-10">
+<input class="peer sr-only" name="listing_type" type="radio" value="direct"/>
+<div class="py-3 rounded-full font-label-caps text-label-caps text-on-surface-variant peer-checked:text-background peer-checked:bg-on-surface transition-all">Direct Buy</div>
+</label>
+<!-- Bidding option (Checked to show conditional fields) -->
+<label class="flex-1 text-center cursor-pointer relative z-10">
+<input checked="" class="peer sr-only" name="listing_type" type="radio" value="bid"/>
+<div class="py-3 rounded-full font-label-caps text-label-caps text-on-surface-variant peer-checked:text-background peer-checked:bg-secondary-fixed shadow-[0_0_12px_rgba(195,244,0,0.3)] transition-all">Open Auction</div>
+</label>
+</div>
+<!-- Conditional Form Fields: Auction Logistics -->
+<div class="space-y-6 animate-fade-in">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant ml-2 flex justify-between" for="starting_bid">
+<span>Base Floor Price</span>
+<span class="text-secondary-fixed">Required</span>
+</label>
+<div class="relative">
+<span class="absolute left-5 top-1/2 -translate-y-1/2 font-price-display text-price-display text-on-surface-variant text-[20px]">$</span>
+<input class="w-full bg-surface-dim border border-white/10 rounded-full pl-10 pr-5 py-4 text-secondary-fixed focus:outline-none focus:border-secondary-fixed focus:ring-1 focus:ring-secondary-fixed font-price-display text-price-display transition-all placeholder:text-on-surface-variant/30" id="starting_bid" placeholder="0.00" type="number"/>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant ml-2" for="end_date">Auction Closure</label>
+<div class="relative">
+<input class="w-full bg-surface-dim border border-white/10 rounded-full pl-12 pr-4 py-4 text-on-surface focus:outline-none focus:border-secondary-fixed focus:ring-1 focus:ring-secondary-fixed font-body-md text-body-md transition-all appearance-none cursor-pointer [color-scheme:dark]" id="end_date" type="date"/>
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">calendar_today</span>
+</div>
+</div>
+<div class="space-y-2">
+<label class="font-label-caps text-label-caps text-on-surface-variant ml-2" for="end_time">Time (UTC)</label>
+<div class="relative">
+<input class="w-full bg-surface-dim border border-white/10 rounded-full pl-12 pr-4 py-4 text-on-surface focus:outline-none focus:border-secondary-fixed focus:ring-1 focus:ring-secondary-fixed font-body-md text-body-md transition-all appearance-none cursor-pointer [color-scheme:dark]" id="end_time" type="time" value="12:00"/>
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">schedule</span>
+</div>
+</div>
+</div>
+<!-- Dynamic Hint Card -->
+<div class="mt-4 bg-[#161e00] border border-secondary-fixed/20 rounded-[1.5rem] p-4 flex gap-3 items-start">
+<span class="material-symbols-outlined text-secondary-fixed text-[20px] mt-0.5" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+<p class="font-body-md text-body-md text-on-surface-variant text-[14px]">Historical data suggests a 48-hour auction window maximizes wholesale algorithmic bidding by 24%.</p>
+</div>
+</div>
+</div>
+</div>
+</form>
+</div>
+</main>
+</body></html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Farmora - Digital Marketplace</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&amp;family=Sora:wght@100..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "surface": "#121411",
+                "surface-container": "#1e201d",
+                "on-surface": "#e3e3de",
+                "secondary-fixed-dim": "#abd600",
+                "primary-fixed-dim": "#a9d293",
+                "on-secondary": "#283500",
+                "surface-bright": "#383a36",
+                "on-primary": "#173809",
+                "surface-container-high": "#292b27",
+                "on-tertiary-fixed": "#360f00",
+                "on-tertiary-container": "#fb9f75",
+                "on-secondary-container": "#556d00",
+                "on-primary-container": "#98c083",
+                "tertiary-container": "#753413",
+                "error": "#ffb4ab",
+                "secondary-container": "#c3f400",
+                "tertiary-fixed-dim": "#ffb596",
+                "outline-variant": "#43493e",
+                "on-background": "#e3e3de",
+                "on-tertiary-fixed-variant": "#753413",
+                "primary-fixed": "#c5efad",
+                "surface-dim": "#121411",
+                "on-surface-variant": "#c3c8bb",
+                "inverse-surface": "#e3e3de",
+                "tertiary-fixed": "#ffdbcd",
+                "surface-container-lowest": "#0d0f0c",
+                "on-error-container": "#ffdad6",
+                "inverse-primary": "#446733",
+                "background": "#121411",
+                "surface-variant": "#333532",
+                "on-secondary-fixed": "#161e00",
+                "on-tertiary": "#581e00",
+                "on-primary-fixed": "#062100",
+                "on-secondary-fixed-variant": "#3c4d00",
+                "on-error": "#690005",
+                "surface-container-low": "#1a1c19",
+                "surface-tint": "#a9d293",
+                "tertiary": "#ffb596",
+                "inverse-on-surface": "#2f312e",
+                "surface-container-highest": "#333532",
+                "outline": "#8d9386",
+                "error-container": "#93000a",
+                "secondary-fixed": "#c3f400",
+                "secondary": "#ffffff",
+                "primary": "#a9d293",
+                "primary-container": "#2d4f1e",
+                "on-primary-fixed-variant": "#2d4f1e"
+        },
+        "borderRadius": {
+                "DEFAULT": "1rem",
+                "lg": "2rem",
+                "xl": "3rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "unit": "8px",
+                "section-gap": "80px",
+                "container-margin": "24px",
+                "card-padding": "24px",
+                "gutter": "16px"
+        },
+        "fontFamily": {
+                "display-lg-mobile": [
+                        "Literata"
+                ],
+                "price-display": [
+                        "Sora"
+                ],
+                "body-md": [
+                        "Sora"
+                ],
+                "body-lg": [
+                        "Sora"
+                ],
+                "label-caps": [
+                        "Sora"
+                ],
+                "headline-md": [
+                        "Literata"
+                ],
+                "display-lg": [
+                        "Literata"
+                ]
+        },
+        "fontSize": {
+                "display-lg-mobile": [
+                        "36px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "600"
+                        }
+                ],
+                "price-display": [
+                        "24px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "label-caps": [
+                        "12px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "0.1em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "headline-md": [
+                        "32px",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "500"
+                        }
+                ],
+                "display-lg": [
+                        "56px",
+                        {
+                                "lineHeight": "1.1",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+            color: theme('colors.on-background');
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/10 backdrop-blur-xl border-b border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.3)]">
+<div class="flex justify-between items-center px-container-margin py-4 w-full max-w-[1440px] mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-secondary-fixed tracking-tight">
+                Farmora
+            </div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-secondary-fixed border-b-2 border-secondary-fixed pb-1 font-label-caps text-label-caps hover:text-secondary-fixed transition-colors duration-300" href="#">Marketplace</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-secondary-fixed transition-colors duration-300" href="#">Auctions</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-secondary-fixed transition-colors duration-300" href="#">Our Story</a>
+<a class="text-on-surface-variant font-label-caps text-label-caps hover:text-secondary-fixed transition-colors duration-300" href="#">Farmers</a>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-secondary-fixed transition-colors duration-300">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+<button class="text-on-surface-variant hover:text-secondary-fixed transition-colors duration-300">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+</div>
+<button class="hidden md:flex items-center justify-center bg-secondary-fixed text-on-secondary-fixed px-6 py-2 rounded-full font-label-caps text-label-caps hover:shadow-[0_0_15px_rgba(195,244,0,0.3)] transition-all">
+                    Join Harvest
+                </button>
+<!-- Mobile Menu Button -->
+<button class="md:hidden text-on-surface-variant">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-grow pt-[100px] px-container-margin pb-section-gap max-w-[1440px] mx-auto w-full flex flex-col md:flex-row gap-8">
+<!-- Sidebar Filters -->
+<aside class="w-full md:w-64 shrink-0 flex flex-col gap-8">
+<div class="bg-surface-container/30 backdrop-blur-2xl border border-white/5 rounded-DEFAULT p-card-padding">
+<h2 class="font-headline-md text-headline-md text-secondary-fixed mb-6">Filters</h2>
+<!-- Categories -->
+<div class="mb-8">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-4">CATEGORIES</h3>
+<div class="flex flex-col gap-3">
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-5 h-5 rounded-full border border-outline flex items-center justify-center group-hover:border-secondary-fixed transition-colors">
+<div class="w-3 h-3 bg-secondary-fixed rounded-full hidden"></div>
+</div>
+<span class="text-on-surface group-hover:text-secondary-fixed transition-colors">Veggies</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-5 h-5 rounded-full border border-secondary-fixed flex items-center justify-center">
+<div class="w-3 h-3 bg-secondary-fixed rounded-full"></div>
+</div>
+<span class="text-secondary-fixed">Fruits</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-5 h-5 rounded-full border border-outline flex items-center justify-center group-hover:border-secondary-fixed transition-colors">
+<div class="w-3 h-3 bg-secondary-fixed rounded-full hidden"></div>
+</div>
+<span class="text-on-surface group-hover:text-secondary-fixed transition-colors">Grains</span>
+</label>
+<label class="flex items-center gap-3 cursor-pointer group">
+<div class="w-5 h-5 rounded-full border border-outline flex items-center justify-center group-hover:border-secondary-fixed transition-colors">
+<div class="w-3 h-3 bg-secondary-fixed rounded-full hidden"></div>
+</div>
+<span class="text-on-surface group-hover:text-secondary-fixed transition-colors">Dairy</span>
+</label>
+</div>
+</div>
+<!-- Price Range -->
+<div class="mb-8">
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-4">PRICE RANGE</h3>
+<div class="flex items-center gap-2">
+<input class="w-full bg-surface/50 border border-white/10 rounded-full px-4 py-2 font-body-md text-body-md text-on-surface focus:outline-none focus:border-secondary-fixed transition-colors placeholder:text-on-surface-variant" placeholder="Min" type="text"/>
+<span class="text-on-surface-variant">-</span>
+<input class="w-full bg-surface/50 border border-white/10 rounded-full px-4 py-2 font-body-md text-body-md text-on-surface focus:outline-none focus:border-secondary-fixed transition-colors placeholder:text-on-surface-variant" placeholder="Max" type="text"/>
+</div>
+</div>
+<!-- Listing Type -->
+<div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-4">LISTING TYPE</h3>
+<div class="flex flex-wrap gap-2">
+<button class="px-4 py-2 rounded-full border border-secondary-fixed bg-secondary-fixed/10 text-secondary-fixed font-label-caps text-label-caps transition-colors shadow-[0_0_10px_rgba(195,244,0,0.2)]">
+                            Buy Now
+                        </button>
+<button class="px-4 py-2 rounded-full border border-white/10 text-on-surface hover:border-secondary-fixed hover:text-secondary-fixed font-label-caps text-label-caps transition-colors">
+                            Bidding
+                        </button>
+</div>
+</div>
+</div>
+</aside>
+<!-- Product Grid Area -->
+<div class="flex-grow flex flex-col gap-6">
+<!-- Top Actions -->
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+<p class="text-on-surface-variant">Showing <span class="text-secondary-fixed font-bold">24</span> results</p>
+<div class="flex items-center gap-3">
+<span class="font-label-caps text-label-caps text-on-surface-variant">SORT BY:</span>
+<div class="relative">
+<select class="bg-surface-container/50 border border-white/10 rounded-full pl-4 pr-10 py-2 font-body-md text-body-md text-on-surface focus:outline-none focus:border-secondary-fixed appearance-none cursor-pointer hover:bg-surface-container/80 transition-colors">
+<option>Newest</option>
+<option>Ending Soon</option>
+<option>Price Low-High</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant text-sm">expand_more</span>
+</div>
+</div>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1: Buy Now -->
+<div class="bg-surface-container/30 backdrop-blur-xl border border-white/5 rounded-DEFAULT overflow-hidden group hover:border-white/10 hover:-translate-y-1 transition-all duration-300 flex flex-col relative">
+<div class="relative h-48 overflow-hidden">
+<img alt="Fresh organic tomatoes" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="A close-up shot of freshly harvested, vibrant red organic tomatoes resting in a woven wooden basket. The lighting is soft and natural, suggesting an early morning farm setting. The overall mood is fresh, raw, and organic, fitting seamlessly into an eco-futuristic agricultural aesthetic with deep earthy undertones and crisp details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7mnH4jNWu8R5bO5uTRHOdtSKnUnHyWqftJTAECqJkrpngZmNZYSdfla8_Zuo0FbtY860kPAoNJ5cn_xwebUGq3Qe5VzFaCewqOB4GRw3O5T9S3CV9W2Otv94K05nudsVxLe0hLS9wXcVIDHjF4r9PBwcAF4cjoxTioBXRa4--bMgMFbJ_b5CdqECFDT1kNZYDRbN8asKKwlZ0FBOfQ9su26ahA7mFh8-wbRk7_Qju57Z-9Ra9s3FqJJFxjwht-3IvdwkHzKjBZio"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container/90 via-surface-container/20 to-transparent"></div>
+<div class="absolute top-4 left-4 bg-surface/60 backdrop-blur-md text-primary-fixed-dim px-3 py-1 rounded-full font-label-caps text-label-caps flex items-center gap-1 border border-primary-fixed-dim/30">
+<span class="material-symbols-outlined text-[14px]">shopping_cart</span> BUY NOW
+                        </div>
+</div>
+<div class="p-card-padding flex flex-col flex-grow z-10 -mt-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-[20px] leading-tight font-semibold text-on-surface group-hover:text-primary-fixed-dim transition-colors">Heirloom Tomatoes</h3>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant mb-4">
+<span class="material-symbols-outlined text-[16px] text-secondary-fixed">verified</span>
+<span class="text-sm">Green Valley Farm</span>
+</div>
+<div class="mt-auto flex items-end justify-between">
+<div>
+<p class="font-price-display text-price-display text-secondary-fixed">$4.50<span class="text-sm text-on-surface-variant font-normal">/lb</span></p>
+</div>
+<button class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-on-surface hover:bg-secondary-fixed hover:text-on-secondary-fixed hover:border-secondary-fixed transition-all group-hover:shadow-[0_0_15px_rgba(195,244,0,0.2)]">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Card 2: Live Auction -->
+<div class="bg-surface-container/30 backdrop-blur-xl border border-secondary-fixed/40 rounded-DEFAULT overflow-hidden group hover:border-secondary-fixed hover:-translate-y-1 transition-all duration-300 flex flex-col relative shadow-[0_0_25px_rgba(195,244,0,0.08)] hover:shadow-[0_0_30px_rgba(195,244,0,0.15)]">
+<div class="absolute inset-0 bg-secondary-fixed/5 pointer-events-none group-hover:bg-secondary-fixed/10 transition-colors"></div>
+<div class="relative h-48 overflow-hidden">
+<img alt="Organic Hass Avocados" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="A crate filled with perfectly ripe, textured Hass avocados. The dark, bumpy skin of the avocados contrasts with the raw, light-colored wooden crate. The lighting is focused, creating subtle highlights on the fruit surfaces, emphasizing precision and quality in a clean, modern agricultural setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmiJh1rQORcYBBA-IG4pYgf9yFNe2p_GlnzTlJRINYfn0OCSQVHY5IjM4HnLcCyQ5c0mxXdN1BzSAtS22QG4J2XSUlfHe2cZWzPJ2PbbK55CvfNIFfzKH6ld8DxQfNwzdmsf3EiNb1medir0bBJBQWTZ6qX3qTj4Q9FEGWExl7iycGLVpX9i36UyO7sFoBgi0IHeMLfXAK2mp2Zf9goGFZhw_jQwL1xM4XEcKyDCQQwdI8F6W_FADv1VpCeIvkWccPWINkwwqOZvw"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container/90 via-surface-container/20 to-transparent"></div>
+<div class="absolute top-4 left-4 bg-tertiary-container/80 backdrop-blur-md text-on-tertiary-container px-3 py-1 rounded-full font-label-caps text-label-caps flex items-center gap-1 border border-tertiary-container/50 shadow-[0_0_10px_rgba(251,159,117,0.3)]">
+<span class="material-symbols-outlined text-[14px]">gavel</span> LIVE AUCTION
+                        </div>
+<div class="absolute top-4 right-4 bg-surface/80 backdrop-blur-md text-secondary-fixed px-3 py-1 rounded-full font-label-caps text-label-caps flex items-center gap-1 border border-secondary-fixed/40 shadow-[0_0_10px_rgba(195,244,0,0.2)]">
+<span class="material-symbols-outlined text-[14px] animate-pulse">timer</span> 02:14:30
+                        </div>
+</div>
+<div class="p-card-padding flex flex-col flex-grow z-10 -mt-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-[20px] leading-tight font-semibold text-on-surface group-hover:text-secondary-fixed transition-colors">Bulk Hass Avocados</h3>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant mb-4">
+<span class="material-symbols-outlined text-[16px] text-secondary-fixed">verified</span>
+<span class="text-sm">Sunrise Orchards</span>
+</div>
+<div class="mt-auto flex items-end justify-between">
+<div>
+<p class="text-[10px] text-on-surface-variant mb-1 uppercase tracking-widest font-semibold">Current Bid</p>
+<p class="font-price-display text-price-display text-secondary-fixed drop-shadow-[0_0_8px_rgba(195,244,0,0.3)]">$120.00<span class="text-sm text-on-surface-variant font-normal drop-shadow-none">/crate</span></p>
+</div>
+<button class="bg-secondary-fixed text-on-secondary-fixed px-5 py-2.5 rounded-full font-label-caps text-label-caps hover:shadow-[0_0_20px_rgba(195,244,0,0.4)] transition-all transform group-hover:scale-105 active:scale-95">
+                                Bid Now
+                            </button>
+</div>
+</div>
+</div>
+<!-- Card 3: Buy Now -->
+<div class="bg-surface-container/30 backdrop-blur-xl border border-white/5 rounded-DEFAULT overflow-hidden group hover:border-white/10 hover:-translate-y-1 transition-all duration-300 flex flex-col relative">
+<div class="relative h-48 overflow-hidden">
+<img alt="Fresh Strawberries" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" data-alt="A close-up view of bright red, freshly picked strawberries resting on dark soil. The vibrant red of the berries pops against the deep, earthy tones of the background. The lighting is crisp and natural, highlighting the tiny seeds and glossy surface of the fruit, fitting an eco-futuristic, high-quality agricultural visual style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG0JuUBrdVauOUaBidmnKoP7_h_KgSYg21R-Hu98GEv4w2G16o1jnvXcV6IVSPt3sE_YiHA90TA8g_f7v-larZprDvlxKfJTGfnAgfCYoxnNUljnlVc7fIUGKGDYkx_--7r7QniRvNxCnqCmKNYXH9eQRYH8eHXE5DqRSDl-kCJidabpmbwcEnpPItJ6UQEj3-LdKSObixnGBUY1SmMkPbAb_iFfLxe89iosu605U5glt5zqEGX58cr7P8dyztgGvXeyhlo6tVHHM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-container/90 via-surface-container/20 to-transparent"></div>
+<div class="absolute top-4 left-4 bg-surface/60 backdrop-blur-md text-primary-fixed-dim px-3 py-1 rounded-full font-label-caps text-label-caps flex items-center gap-1 border border-primary-fixed-dim/30">
+<span class="material-symbols-outlined text-[14px]">shopping_cart</span> BUY NOW
+                        </div>
+</div>
+<div class="p-card-padding flex flex-col flex-grow z-10 -mt-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-[20px] leading-tight font-semibold text-on-surface group-hover:text-primary-fixed-dim transition-colors">Organic Strawberries</h3>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant mb-4">
+<span class="material-symbols-outlined text-[16px] text-secondary-fixed">verified</span>
+<span class="text-sm">Berry Good Farms</span>
+</div>
+<div class="mt-auto flex items-end justify-between">
+<div>
+<p class="font-price-display text-price-display text-secondary-fixed">$6.00<span class="text-sm text-on-surface-variant font-normal">/pint</span></p>
+</div>
+<button class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-on-surface hover:bg-secondary-fixed hover:text-on-secondary-fixed hover:border-secondary-fixed transition-all group-hover:shadow-[0_0_15px_rgba(195,244,0,0.2)]">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-12 flex justify-center items-center gap-2">
+<button class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-secondary-fixed hover:border-secondary-fixed transition-colors">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-secondary-fixed text-on-secondary-fixed font-bold flex items-center justify-center shadow-[0_0_15px_rgba(195,244,0,0.3)]">1</button>
+<button class="w-10 h-10 rounded-full border border-white/10 text-on-surface-variant hover:text-secondary-fixed hover:border-white/20 transition-colors flex items-center justify-center">2</button>
+<button class="w-10 h-10 rounded-full border border-white/10 text-on-surface-variant hover:text-secondary-fixed hover:border-white/20 transition-colors flex items-center justify-center">3</button>
+<span class="text-on-surface-variant px-2">...</span>
+<button class="w-10 h-10 rounded-full border border-white/10 text-on-surface-variant hover:text-secondary-fixed hover:border-white/20 transition-colors flex items-center justify-center">12</button>
+<button class="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-on-surface-variant hover:text-secondary-fixed hover:border-secondary-fixed transition-colors">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-section-gap bg-surface-container-lowest border-t border-white/5 font-body-md text-body-md">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-container-margin py-card-padding max-w-7xl mx-auto">
+<div class="col-span-1 md:col-span-2">
+<div class="font-headline-md text-headline-md text-on-surface mb-4">Farmora</div>
+<p class="text-on-surface-variant text-sm mb-4">© 2026 Farmora Ecosystems. Regenerating the earth through precision technology.</p>
+</div>
+<div class="col-span-1">
+<ul class="flex flex-col gap-2">
+<li><a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors" href="#">Sustainability Report</a></li>
+<li><a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors" href="#">Impact Stats</a></li>
+<li><a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors" href="#">Farmer Portal</a></li>
+</ul>
+</div>
+<div class="col-span-1">
+<ul class="flex flex-col gap-2">
+<li><a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors" href="#">Privacy</a></li>
+<li><a class="text-on-surface-variant font-label-caps text-label-caps hover:text-primary transition-colors" href="#">Terms</a></li>
+</ul>
+</div>
+</div>
+</footer>
+</body></html>
