@@ -4,7 +4,7 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="relative pt-32 pb-16 px-container-margin w-screen -ml-[calc(50vw-50%)]">
+<section class="relative pt-16 pb-8 px-container-margin w-screen -ml-[calc(50vw-50%)]">
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--tw-gradient-stops))] from-primary-fixed/10 via-transparent to-transparent opacity-60 pointer-events-none"></div>
     <div class="max-w-4xl mx-auto text-center relative z-10">
         <h1 class="font-display-lg text-[48px] md:text-[64px] text-white font-semibold mb-6">
@@ -80,22 +80,22 @@
 <section class="px-container-margin py-section-gap max-w-[1440px] mx-auto w-full border-t border-white/5">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         <div>
-            <h2 class="font-headline-md text-[32px] text-white mb-6">Built for Continental Scale</h2>
+            <h2 class="font-headline-md text-[32px] text-white mb-6">Built for National Scale</h2>
             <p class="font-body-md text-on-surface-variant leading-relaxed mb-8">
-                The Farmora infrastructure is designed to handle thousands of concurrent live auctions without lag. By utilizing decentralized edge nodes and real-time WebSocket communication, price discovery happens instantaneously across the globe.
+                The Farmora infrastructure is designed to handle thousands of concurrent marketplace transactions without lag. By utilizing robust cloud servers and real-time communication, price discovery happens instantaneously across the country.
             </p>
             <div class="flex flex-col gap-6">
                 <div class="flex items-center gap-4">
                     <span class="material-symbols-outlined text-secondary-fixed text-2xl">speed</span>
-                    <span class="font-body-md text-white">Sub-50ms Auction Bidding Latency</span>
+                    <span class="font-body-md text-white">Ultra-Low Bidding Latency</span>
                 </div>
                 <div class="flex items-center gap-4">
                     <span class="material-symbols-outlined text-secondary-fixed text-2xl">verified_user</span>
-                    <span class="font-body-md text-white">Military-Grade Transaction Security</span>
+                    <span class="font-body-md text-white">Enterprise-Grade Security</span>
                 </div>
                 <div class="flex items-center gap-4">
                     <span class="material-symbols-outlined text-secondary-fixed text-2xl">cloud_sync</span>
-                    <span class="font-body-md text-white">100% Cloud-Native Uptime</span>
+                    <span class="font-body-md text-white">99.9% Platform Uptime</span>
                 </div>
             </div>
         </div>
@@ -112,11 +112,11 @@
                 <div class="grid grid-cols-2 gap-6">
                     <div class="bg-surface-container/50 border border-white/10 rounded-2xl p-6 text-center">
                         <span class="font-display-lg text-white text-3xl block mb-1">14.2K</span>
-                        <span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase">Active Nodes</span>
+                        <span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase">Active Users</span>
                     </div>
                     <div class="bg-surface-container/50 border border-white/10 rounded-2xl p-6 text-center">
-                        <span class="font-display-lg text-primary-fixed text-3xl block mb-1">99.9%</span>
-                        <span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase">Uptime SLA</span>
+                        <span class="font-display-lg text-primary-fixed text-3xl block mb-1">48 hrs</span>
+                        <span class="font-label-caps text-[10px] text-on-surface-variant tracking-widest uppercase">Harvest to Delivery</span>
                     </div>
                 </div>
             </div>
@@ -127,37 +127,30 @@
 <!-- Leadership -->
 <section class="px-container-margin py-section-gap max-w-[1440px] mx-auto text-center w-full bg-surface-container-lowest border-y border-white/5 rounded-[40px] mb-16">
     <h2 class="font-headline-md text-[32px] text-white mb-16 relative inline-block">
-        System Architects
+        Project Contributors
         <div class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-12 h-1 bg-linear-to-r from-primary-fixed to-secondary-fixed rounded-full"></div>
     </h2>
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-5xl mx-auto px-8">
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 max-w-4xl mx-auto px-8">
         <div class="group cursor-pointer">
             <div class="w-24 h-24 mx-auto rounded-full bg-surface-container border border-white/10 mb-4 overflow-hidden group-hover:border-secondary-fixed/50 transition-colors">
-                <img src="https://i.pravatar.cc/150?img=11" alt="CEO" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                <img src="{{ asset('images/aniket.png') }}" alt="Lead Developer" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
             </div>
-            <h4 class="font-headline-md text-white text-lg">Dr. Elena Rostova</h4>
-            <p class="font-label-caps text-[10px] text-secondary-fixed tracking-widest uppercase mt-1">Chief Executive Officer</p>
+            <h4 class="font-headline-md text-white text-lg">Aniket Kumar Singh</h4>
+            <p class="font-label-caps text-[10px] text-secondary-fixed tracking-widest uppercase mt-1">Lead Developer</p>
         </div>
         <div class="group cursor-pointer">
             <div class="w-24 h-24 mx-auto rounded-full bg-surface-container border border-white/10 mb-4 overflow-hidden group-hover:border-secondary-fixed/50 transition-colors">
-                <img src="https://i.pravatar.cc/150?img=33" alt="CTO" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                <img src="https://i.pravatar.cc/150?img=33" alt="Project Contributor" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
             </div>
-            <h4 class="font-headline-md text-white text-lg">Marcus Chen</h4>
-            <p class="font-label-caps text-[10px] text-secondary-fixed tracking-widest uppercase mt-1">Chief Technology Officer</p>
+            <h4 class="font-headline-md text-white text-lg">Sarthak Agnohatri</h4>
+            <p class="font-label-caps text-[10px] text-secondary-fixed tracking-widest uppercase mt-1">Project Contributor</p>
         </div>
         <div class="group cursor-pointer">
             <div class="w-24 h-24 mx-auto rounded-full bg-surface-container border border-white/10 mb-4 overflow-hidden group-hover:border-secondary-fixed/50 transition-colors">
-                <img src="https://i.pravatar.cc/150?img=44" alt="Head of Ag" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                <img src="https://i.pravatar.cc/150?img=60" alt="Project Contributor" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
             </div>
-            <h4 class="font-headline-md text-white text-lg">Sarah Jenkins</h4>
-            <p class="font-label-caps text-[10px] text-secondary-fixed tracking-widest uppercase mt-1">VP of Agronomy</p>
-        </div>
-        <div class="group cursor-pointer">
-            <div class="w-24 h-24 mx-auto rounded-full bg-surface-container border border-white/10 mb-4 overflow-hidden group-hover:border-secondary-fixed/50 transition-colors">
-                <img src="https://i.pravatar.cc/150?img=60" alt="Head of Supply" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
-            </div>
-            <h4 class="font-headline-md text-white text-lg">David Okafor</h4>
-            <p class="font-label-caps text-[10px] text-secondary-fixed tracking-widest uppercase mt-1">Head of Logistics</p>
+            <h4 class="font-headline-md text-white text-lg">Arin Kausal</h4>
+            <p class="font-label-caps text-[10px] text-secondary-fixed tracking-widest uppercase mt-1">Project Contributor</p>
         </div>
     </div>
 </section>

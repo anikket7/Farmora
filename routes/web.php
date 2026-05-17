@@ -7,6 +7,9 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Consumer;
 use App\Http\Controllers\Farmer;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactFormSubmitted;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +29,23 @@ Route::get('/about', function () {
 Route::get('/contact', function () {
     return view('pages.contact');
 })->name('contact');
+
+Route::post('/contact', function (Request $request) {
+    $validated = $request->validate([
+        'first_name' => 'required|string|max:255',
+        'last_name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'department' => 'required|string',
+        'message' => 'required|string',
+    ]);
+
+    try {
+        Mail::to(env('MAIL_FROM_ADDRESS', 'admin@farmora.com'))->send(new ContactFormSubmitted($validated));
+        return back()->with('success', 'Transmission successful! Our specialists will reach out to you shortly.');
+    } catch (\Exception $e) {
+        return back()->with('error', 'Error sending transmission. Please check your email configuration.');
+    }
+})->name('contact.submit');
 
 // Language switcher
 Route::get('/lang/{locale}', function (string $locale) {
