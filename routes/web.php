@@ -54,9 +54,9 @@ Route::post('/contact', function (Request $request) {
 
     try {
         Mail::to(env('MAIL_FROM_ADDRESS', 'admin@farmora.com'))->send(new ContactFormSubmitted($validated));
-        return back()->with('success', 'Transmission successful! Our specialists will reach out to you shortly.');
+        return back()->with('success', 'Message request sent! Our specialists will reach out to you shortly.');
     } catch (\Exception $e) {
-        return back()->with('error', 'Error sending transmission. Please check your email configuration.');
+        return back()->with('error', 'Error sending message request. Please check your email configuration.');
     }
 })->name('contact.submit');
 
