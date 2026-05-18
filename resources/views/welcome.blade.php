@@ -128,32 +128,32 @@
     <div class="flex overflow-x-auto gap-8 px-container-margin pb-12 snap-x snap-mandatory hide-scrollbar max-w-[1440px] mx-auto relative z-10" style="-ms-overflow-style: none; scrollbar-width: none;">
         <style>.hide-scrollbar::-webkit-scrollbar { display: none; }</style>
         
-        <!-- Auction Card 1 -->
-        <a href="{{ route('marketplace', ['listing_type' => 'bid']) }}" class="min-w-[340px] md:min-w-[420px] bg-surface-container/30 backdrop-blur-xl border border-secondary-fixed/40 rounded-DEFAULT overflow-hidden group hover:border-secondary-fixed hover:-translate-y-1 transition-all duration-300 flex flex-col relative shadow-[0_0_25px_rgba(203,163,88,0.08)] hover:shadow-[0_0_30px_rgba(203,163,88,0.15)] snap-start">
+        @forelse($activeAuctions as $auction)
+        <a href="{{ route('marketplace.show', $auction->id) }}" class="min-w-[340px] md:min-w-[420px] bg-surface-container/30 backdrop-blur-xl border border-secondary-fixed/40 rounded-DEFAULT overflow-hidden group hover:border-secondary-fixed hover:-translate-y-1 transition-all duration-300 flex flex-col relative shadow-[0_0_25px_rgba(203,163,88,0.08)] hover:shadow-[0_0_30px_rgba(203,163,88,0.15)] snap-start">
             <div class="absolute inset-0 bg-secondary-fixed/5 pointer-events-none group-hover:bg-secondary-fixed/10 transition-colors"></div>
             <div class="relative h-48 overflow-hidden">
-                <img alt="Organic Heirloom Tomatoes" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxSLueUs8bIkyTYhT_15n_zNv_475T5B04hz58W0uvakrPl1c4F8SpzMvcGfETrI369gzygh3Ryq9ZqzHcuFp5z14b2Ai2Y8vdUInCD3mHOGyaPKfx6GIkz7cQTdm0NmsdWQ9KWzwNBRPJphxR3LBU8Oo93lYrh6i9i_jkG85i4bvVBy86wWSJtSDTIUY0s6mpJkNkMmNqTaLY16AYUUOvt0xw5ZTVvKNkgWiuWt3aycUfPN_NjgngvaOvcbKq3t4cl63CM2kEEoc"/>
+                <img alt="{{ $auction->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" src="{{ $auction->primaryImage && $auction->primaryImage->image_path !== 'products/placeholder.jpg' ? Storage::url($auction->primaryImage->image_path) : 'https://placehold.co/800x600/1e1e1e/333333?text=No+Image' }}"/>
                 <div class="absolute inset-0 bg-linear-to-t from-surface-container/90 via-surface-container/20 to-transparent"></div>
                 
                 <div class="absolute top-4 left-4 bg-tertiary-container/80 backdrop-blur-md text-on-tertiary-container px-3 py-1 rounded-full font-label-caps text-label-caps flex items-center gap-1 border border-tertiary-container/50 shadow-[0_0_10px_rgba(251,159,117,0.3)]">
                     <span class="material-symbols-outlined text-[14px]">gavel</span> LIVE AUCTION
                 </div>
                 <div class="absolute top-4 right-4 bg-surface/80 backdrop-blur-md text-secondary-fixed px-3 py-1 rounded-full font-label-caps text-label-caps flex items-center gap-1 border border-secondary-fixed/40 shadow-[0_0_10px_rgba(203,163,88,0.2)]">
-                    <span class="material-symbols-outlined text-[14px] animate-pulse">timer</span> Ends Today
+                    <span class="material-symbols-outlined text-[14px] animate-pulse">timer</span> Ends {{ $auction->bidSession->end_time->diffForHumans() }}
                 </div>
             </div>
             <div class="p-card-padding flex flex-col grow z-10 -mt-6">
                 <div class="flex justify-between items-start mb-2">
-                    <h3 class="font-headline-md text-[20px] leading-tight font-semibold text-on-surface group-hover:text-secondary-fixed transition-colors">Heirloom Tomatoes</h3>
+                    <h3 class="font-headline-md text-[20px] leading-tight font-semibold text-on-surface group-hover:text-secondary-fixed transition-colors">{{ $auction->title }}</h3>
                 </div>
                 <div class="flex items-center gap-1 text-on-surface-variant mb-4">
                     <span class="material-symbols-outlined text-[16px] text-secondary-fixed">verified</span>
-                    <span class="text-sm line-clamp-1">Valley Grove Farms • 50kg Lot</span>
+                    <span class="text-sm line-clamp-1">{{ $auction->farmer->farmerProfile->farm_name ?? $auction->farmer->name }} • {{ (float) $auction->quantity }}{{ $auction->unit }} Lot</span>
                 </div>
                 <div class="mt-auto flex items-end justify-between">
                     <div>
                         <p class="text-[10px] text-on-surface-variant mb-1 uppercase tracking-widest font-semibold">Current Bid</p>
-                        <p class="font-price-display text-price-display text-secondary-fixed drop-shadow-[0_0_8px_rgba(203,163,88,0.3)]">₹145.00</p>
+                        <p class="font-price-display text-price-display text-secondary-fixed drop-shadow-[0_0_8px_rgba(203,163,88,0.3)]">₹{{ number_format($auction->bidSession->currentPrice(), 2) }}</p>
                     </div>
                     <div class="bg-secondary-fixed text-on-secondary-fixed px-5 py-2.5 rounded-full font-label-caps text-label-caps transition-all transform group-hover:scale-105">
                         Bid Now
@@ -161,40 +161,13 @@
                 </div>
             </div>
         </a>
-
-        <!-- Auction Card 2 -->
-        <a href="{{ route('marketplace', ['listing_type' => 'bid']) }}" class="min-w-[340px] md:min-w-[420px] bg-surface-container/30 backdrop-blur-xl border border-secondary-fixed/40 rounded-DEFAULT overflow-hidden group hover:border-secondary-fixed hover:-translate-y-1 transition-all duration-300 flex flex-col relative shadow-[0_0_25px_rgba(203,163,88,0.08)] hover:shadow-[0_0_30px_rgba(203,163,88,0.15)] snap-start">
-            <div class="absolute inset-0 bg-secondary-fixed/5 pointer-events-none group-hover:bg-secondary-fixed/10 transition-colors"></div>
-            <div class="relative h-48 overflow-hidden">
-                <img alt="Hydroponic Microgreens" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMxs70-KkvPQUQece3WIE1fo3QI7EiniUo-zij8mHTvakeTKnM6Gmxv8gdUGo7uKo9-1owhnAxvwHenFet-1sHv7Z6wQN22WzbwQ5YXANwcvkbF8SL-f96lea8wzaM5Tq3HkHg64n4mjY22Cgp3UFWea1cvX2oGvHQ1thv5BVhzLuU4SCvPS-Hg1UpZoOUwQYKpNDjAxYy4yPwbHKalcInRGEgr5_2ci8yIFNlCuTV7kp9e3jqwZpKWCCW_tjp1a-2ftiRS8cs_9I"/>
-                <div class="absolute inset-0 bg-linear-to-t from-surface-container/90 via-surface-container/20 to-transparent"></div>
-                
-                <div class="absolute top-4 left-4 bg-tertiary-container/80 backdrop-blur-md text-on-tertiary-container px-3 py-1 rounded-full font-label-caps text-label-caps flex items-center gap-1 border border-tertiary-container/50 shadow-[0_0_10px_rgba(251,159,117,0.3)]">
-                    <span class="material-symbols-outlined text-[14px]">gavel</span> LIVE AUCTION
-                </div>
-                <div class="absolute top-4 right-4 bg-surface/80 backdrop-blur-md text-secondary-fixed px-3 py-1 rounded-full font-label-caps text-label-caps flex items-center gap-1 border border-secondary-fixed/40 shadow-[0_0_10px_rgba(203,163,88,0.2)]">
-                    <span class="material-symbols-outlined text-[14px] animate-pulse">timer</span> Ends Tomorrow
-                </div>
-            </div>
-            <div class="p-card-padding flex flex-col grow z-10 -mt-6">
-                <div class="flex justify-between items-start mb-2">
-                    <h3 class="font-headline-md text-[20px] leading-tight font-semibold text-on-surface group-hover:text-secondary-fixed transition-colors">Premium Microgreens</h3>
-                </div>
-                <div class="flex items-center gap-1 text-on-surface-variant mb-4">
-                    <span class="material-symbols-outlined text-[16px] text-secondary-fixed">verified</span>
-                    <span class="text-sm line-clamp-1">AeroFarms Tech • 10kg Lot</span>
-                </div>
-                <div class="mt-auto flex items-end justify-between">
-                    <div>
-                        <p class="text-[10px] text-on-surface-variant mb-1 uppercase tracking-widest font-semibold">Current Bid</p>
-                        <p class="font-price-display text-price-display text-secondary-fixed drop-shadow-[0_0_8px_rgba(203,163,88,0.3)]">₹85.50</p>
-                    </div>
-                    <div class="bg-secondary-fixed text-on-secondary-fixed px-5 py-2.5 rounded-full font-label-caps text-label-caps transition-all transform group-hover:scale-105">
-                        Bid Now
-                    </div>
-                </div>
-            </div>
-        </a>
+        @empty
+        <div class="w-full flex flex-col items-center justify-center py-12 text-center bg-surface-container/30 backdrop-blur-xl border border-white/10 rounded-DEFAULT">
+            <span class="material-symbols-outlined text-[48px] text-on-surface-variant mb-4">inventory_2</span>
+            <h3 class="text-xl font-semibold text-white mb-2">No Active Auctions</h3>
+            <p class="text-on-surface-variant">Check back later for fresh harvest auctions.</p>
+        </div>
+        @endforelse
     </div>
 </section>
 

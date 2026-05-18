@@ -19,7 +19,20 @@ use App\Mail\ContactFormSubmitted;
 
 // Landing page
 Route::get('/', function () {
-    return view('welcome');
+    \App\Models\BidSession::checkAndCloseExpired();
+    
+    $activeAuctions = \App\Models\Product::with(['farmer.farmerProfile', 'primaryImage', 'bidSession.bids'])
+        ->where('listing_type', 'bid')
+        ->where('status', 'active')
+        ->where('is_available', true)
+        ->whereHas('bidSession', function ($q) {
+            $q->where('status', 'active')->where('end_time', '>', now());
+        })
+        ->latest()
+        ->take(4)
+        ->get();
+
+    return view('welcome', compact('activeAuctions'));
 })->name('home');
 
 Route::get('/about', function () {

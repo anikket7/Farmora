@@ -14,7 +14,7 @@ class OrderController extends Controller
     public function index(): View
     {
         $orders = Order::with(['product', 'consumer'])
-            ->whereHas('product', fn ($q) => $q->where('farmer_id', Auth::id()))
+            ->whereHas('product', fn($q) => $q->where('farmer_id', Auth::id()))
             ->latest()
             ->paginate(15);
 
@@ -34,7 +34,7 @@ class OrderController extends Controller
             $product = $order->product;
             if ($product && $product->isBuyable()) {
                 $product->increment('quantity', $order->quantity);
-                
+
                 // If it was sold and now has stock, make it active again
                 if ($product->status === 'sold' && $product->quantity > 0) {
                     $product->update(['status' => 'active']);
