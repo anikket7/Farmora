@@ -15,13 +15,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-*/
 
-// Landing page
+
 Route::get('/', function () {
     BidSession::checkAndCloseExpired();
 
@@ -65,20 +60,16 @@ Route::post('/contact', function (Request $request) {
     }
 })->name('contact.submit');
 
-// Language switcher
-Route::get('/lang/{locale}', function (string $locale) {
-    if (in_array($locale, ['en', 'hi'])) {
-        session(['locale' => $locale]);
-    }
+// // Language switcher
+// Route::get('/lang/{locale}', function (string $locale) {
+//     if (in_array($locale, ['en', 'hi'])) {
+//         session(['locale' => $locale]);
+//     }
 
-    return back();
-})->name('lang.switch');
+//     return back();
+// })->name('lang.switch');
 
-/*
-|--------------------------------------------------------------------------
-| Authentication Routes
-|--------------------------------------------------------------------------
-*/
+
 Route::middleware('guest')->group(function () {
     Route::get('/login', [LoginController::class, 'showLogin'])->name('login');
     Route::post('/login', [LoginController::class, 'login']);
@@ -144,11 +135,7 @@ Route::get('/pending-approval', function () {
     return view('auth.pending-approval');
 })->middleware('auth')->name('pending.approval');
 
-/*
-|--------------------------------------------------------------------------
-| Admin Routes
-|--------------------------------------------------------------------------
-*/
+
 Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(function () {
     Route::get('/dashboard', [Admin\DashboardController::class, 'index'])->name('dashboard');
 
@@ -177,11 +164,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
     Route::post('/bids/{bidSession}/cancel', [Admin\BidController::class, 'cancel'])->name('bids.cancel');
 });
 
-/*
-|--------------------------------------------------------------------------
-| Farmer Routes
-|--------------------------------------------------------------------------
-*/
+
 Route::prefix('farmer')->middleware(['auth', 'verified', 'farmer', 'approved'])->name('farmer.')->group(function () {
     Route::get('/dashboard', [Farmer\DashboardController::class, 'index'])->name('dashboard');
 
@@ -202,11 +185,7 @@ Route::prefix('farmer')->middleware(['auth', 'verified', 'farmer', 'approved'])-
     Route::patch('/orders/{order}/status', [Farmer\OrderController::class, 'updateStatus'])->name('orders.status');
 });
 
-/*
-|--------------------------------------------------------------------------
-| Consumer / Marketplace Routes
-|--------------------------------------------------------------------------
-*/
+
 Route::get('/marketplace', [Consumer\MarketplaceController::class, 'index'])->name('marketplace');
 Route::get('/marketplace/{product}', [Consumer\MarketplaceController::class, 'show'])->name('marketplace.show');
 

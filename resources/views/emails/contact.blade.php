@@ -1,23 +1,20 @@
 <x-mail::message>
-# 🌍 Incoming Transmission: {{ ucfirst($data['department']) }}
+# ✉️ New Contact Message: {{ ucfirst($data['department']) }}
 
-A new user has initialized a transmission via the Farmora Contact Protocol.
+A new customer inquiry has been submitted through the Farmora contact form.
 
 <x-mail::panel>
-**Sender Identification**
+**Sender Details**
 - **Name:** {{ $data['first_name'] }} {{ $data['last_name'] }}
-- **Return Address:** [{{ $data['email'] }}](mailto:{{ $data['email'] }})
-- **Routing Dept:** {{ ucfirst($data['department']) }}
+- **Email:** [{{ $data['email'] }}](mailto:{{ $data['email'] }})
+- **Department:** {{ ucfirst($data['department']) }}
 </x-mail::panel>
 
-### Message Payload
+### Message Content
 <x-mail::panel>
 {{ $data['message'] }}
 </x-mail::panel>
 
-<x-mail::button :url="config('app.url') . '/admin'" color="success">
-Access Admin Dashboard
-</x-mail::button>
 
-*This is an automated transmission from the Farmora Ecosystem.*
+*This is an automated notification sent from the Farmora website.*
 </x-mail::message>
