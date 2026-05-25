@@ -4,7 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class SuspensionTest extends TestCase
@@ -37,6 +36,7 @@ class SuspensionTest extends TestCase
             'password' => bcrypt('password123'),
             'status' => 'approved',
             'role' => 'farmer',
+            'email_verified_at' => now(),
         ]);
 
         $this->actingAs($user);

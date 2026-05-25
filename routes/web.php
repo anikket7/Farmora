@@ -6,10 +6,14 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Consumer;
 use App\Http\Controllers\Farmer;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Mail\ContactFormSubmitted;
+use App\Models\BidSession;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ContactFormSubmitted;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +23,9 @@ use App\Mail\ContactFormSubmitted;
 
 // Landing page
 Route::get('/', function () {
-    \App\Models\BidSession::checkAndCloseExpired();
-    
-    $activeAuctions = \App\Models\Product::with(['farmer.farmerProfile', 'primaryImage', 'bidSession.bids'])
+    BidSession::checkAndCloseExpired();
+
+    $activeAuctions = Product::with(['farmer.farmerProfile', 'primaryImage', 'bidSession.bids'])
         ->where('listing_type', 'bid')
         ->where('status', 'active')
         ->where('is_available', true)
@@ -54,8 +58,9 @@ Route::post('/contact', function (Request $request) {
 
     try {
         Mail::to(env('MAIL_FROM_ADDRESS', 'admin@farmora.com'))->send(new ContactFormSubmitted($validated));
+
         return back()->with('success', 'Message request sent! Our specialists will reach out to you shortly.');
-    } catch (\Exception $e) {
+    } catch (Exception $e) {
         return back()->with('error', 'Error sending message request. Please check your email configuration.');
     }
 })->name('contact.submit');
@@ -87,9 +92,51 @@ Route::middleware('guest')->group(function () {
 
 Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
 
+// Email Verification Routes
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
-    Route::put('/profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/email/verify', function () {
+        return view('auth.verify-email');
+    })->name('verification.notice');
+
+    Route::post('/email/verify', function (Request $request) {
+        $request->validate([
+            'otp' => 'required|string|size:6|regex:/^[0-9]+$/',
+        ]);
+
+        /** @var User $user */
+        $user = $request->user();
+
+        if ($user->email_verification_otp !== $request->otp ||
+            ! $user->email_verification_otp_expires_at ||
+            $user->email_verification_otp_expires_at->isPast()) {
+            return back()->with('error', 'The OTP code is invalid or has expired.');
+        }
+
+        $user->markEmailAsVerified();
+        $user->forceFill([
+            'email_verification_otp' => null,
+            'email_verification_otp_expires_at' => null,
+        ])->save();
+
+        if ($user->isAdmin()) {
+            return redirect()->route('admin.dashboard')->with('success', 'Email verified successfully!');
+        } elseif ($user->isFarmer()) {
+            return redirect()->route('farmer.dashboard')->with('success', 'Email verified successfully!');
+        }
+
+        return redirect()->route('home')->with('success', 'Email verified successfully!');
+    })->middleware('throttle:6,1')->name('verification.verify');
+
+    Route::post('/email/verification-notification', function (Request $request) {
+        $request->user()->sendEmailVerificationNotification();
+
+        return back()->with('status', 'verification-link-sent');
+    })->middleware('throttle:6,1')->name('verification.send');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
 
 // Pending approval page
@@ -135,7 +182,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
 | Farmer Routes
 |--------------------------------------------------------------------------
 */
-Route::prefix('farmer')->middleware(['auth', 'farmer', 'approved'])->name('farmer.')->group(function () {
+Route::prefix('farmer')->middleware(['auth', 'verified', 'farmer', 'approved'])->name('farmer.')->group(function () {
     Route::get('/dashboard', [Farmer\DashboardController::class, 'index'])->name('dashboard');
 
     // Product CRUD
@@ -163,7 +210,7 @@ Route::prefix('farmer')->middleware(['auth', 'farmer', 'approved'])->name('farme
 Route::get('/marketplace', [Consumer\MarketplaceController::class, 'index'])->name('marketplace');
 Route::get('/marketplace/{product}', [Consumer\MarketplaceController::class, 'show'])->name('marketplace.show');
 
-Route::middleware(['auth', 'consumer', 'approved'])->group(function () {
+Route::middleware(['auth', 'verified', 'consumer', 'approved'])->group(function () {
     // Bidding
     Route::post('/bids/{bidSession}', [Consumer\BidController::class, 'place'])->name('bids.place');
     Route::get('/consumer/bids', [Consumer\BidController::class, 'index'])->name('consumer.bids');

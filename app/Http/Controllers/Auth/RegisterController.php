@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\ConsumerProfile;
 use App\Models\FarmerProfile;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\View;
 
@@ -72,14 +74,21 @@ class RegisterController extends Controller
         } else {
             ConsumerProfile::create([
                 'user_id' => $user->id,
+                'delivery_address' => $request->location,
             ]);
         }
 
-        $message = $user->role === 'consumer'
-            ? 'Registration successful! You can now log in.'
-            : 'Registration successful! Your account is pending admin approval.';
+        // Log the user in immediately
+        Auth::login($user);
 
-        return redirect()->route('login')
+        // Dispatch Registered event to trigger verification email
+        event(new Registered($user));
+
+        $message = $user->role === 'consumer'
+            ? 'Registration successful! Please enter the 6-digit OTP code sent to your email to verify your account.'
+            : 'Registration successful! Please verify your account with the OTP sent to your email. Note that your account will also require admin approval.';
+
+        return redirect()->route('verification.notice')
             ->with('success', $message);
     }
 }

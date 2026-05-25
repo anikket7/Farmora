@@ -2,14 +2,17 @@
 
 namespace App\Models;
 
+use App\Mail\VerifyEmailOtp;
 use Database\Factories\UserFactory;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Mail;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
@@ -27,8 +30,9 @@ class User extends Authenticatable
         'status',
         'phone',
         'location',
-        'avatar',
         'approved_at',
+        'email_verification_otp',
+        'email_verification_otp_expires_at',
     ];
 
     /**
@@ -52,6 +56,7 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'approved_at' => 'datetime',
             'password' => 'hashed',
+            'email_verification_otp_expires_at' => 'datetime',
         ];
     }
 
@@ -113,5 +118,22 @@ class User extends Authenticatable
     public function orders(): HasMany
     {
         return $this->hasMany(Order::class, 'consumer_id');
+    }
+
+    public function generateOtp(): string
+    {
+        $otp = (string) rand(100000, 999999);
+        $this->forceFill([
+            'email_verification_otp' => $otp,
+            'email_verification_otp_expires_at' => now()->addMinutes(15),
+        ])->save();
+
+        return $otp;
+    }
+
+    public function sendEmailVerificationNotification(): void
+    {
+        $otp = $this->generateOtp();
+        Mail::to($this->email)->send(new VerifyEmailOtp($otp, $this->name));
     }
 }

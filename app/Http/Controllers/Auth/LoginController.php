@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,7 +28,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
 
-            /** @var \App\Models\User $user */
+            /** @var User $user */
             $user = Auth::user();
 
             if ($user->status === 'suspended') {
@@ -38,6 +39,11 @@ class LoginController extends Controller
                 return back()->withErrors([
                     'email' => 'Your account has been suspended. Please contact the administrator at admin@farmora.com to reactivate your account.',
                 ])->onlyInput('email');
+            }
+
+            // Redirect to email verification if not verified yet
+            if (! $user->hasVerifiedEmail()) {
+                return redirect()->route('verification.notice');
             }
 
             // Role-based redirection
